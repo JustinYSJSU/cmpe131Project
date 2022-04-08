@@ -1,5 +1,5 @@
 # Project Name
-- Name (@username)
+- Justin Yamamoto (@JustinYSJSU)
 - Name (@username)
 - Name (@username)
 - Name (@username)
