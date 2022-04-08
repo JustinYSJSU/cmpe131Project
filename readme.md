@@ -1,5 +1,5 @@
 # Project Name
-- Name (@username)
+- Justin Yamamoto (@JustinYSJSU)
 - Trung Huynh (@tailsspeed)
 - Name (@username)
 - Name (@username)
