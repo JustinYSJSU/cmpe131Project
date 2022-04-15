@@ -1,5 +1,5 @@
 # Project Name
 - Justin Yamamoto (@JustinYSJSU)
 - Trung Huynh (@tailsspeed)
-- Name (@username)
+- Joe Moules (@JoeMoules)
 - Name (@username)
