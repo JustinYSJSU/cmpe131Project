@@ -22,38 +22,51 @@
 3. non-functional
 4. non-functional
 
-## Use Cases
+5. Add to cart
+- **Pre-condition:** User is viewing an item
 
-1. Use Case Name (Should match functional requirement name)
-- **Pre-condition:** <can be a list or short description> Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
-
-- **Trigger:** <can be a list or short description> Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. 
+- **Trigger** User selects "Add to Cart" option
 
 - **Primary Sequence:**
-  
-  1. Ut enim ad minim veniam, quis nostrum e
-  2. Et sequi incidunt 
-  3. Quis aute iure reprehenderit
-  4. ... 
-  5. ...
-  6. ...
-  7. ...
-  8. ...
-  9. ...
-  10. <Try to stick to a max of 10 steps>
 
-- **Primary Postconditions:** <can be a list or short description> 
+  1. System verifies item availability
+  2. System adds item to a list of items that have been added to the cart
+  3. System adjusts price total of items in shopping cart 
+  4. System prompts user with the option to checkout or continue shopping
 
-- **Alternate Sequence:** <you can have more than one alternate sequence to describe multiple issues that may arise>
-  
-  1. Ut enim ad minim veniam, quis nostrum e
-  2. Ut enim ad minim veniam, quis nostrum e
-  3. ...
+- **Alternate Sequence:** Item is out of stock
 
-- **Alternate Sequence <optional>:** <you can have more than one alternate sequence to describe multiple issues that may arise>
-  
-  1. Ut enim ad minim veniam, quis nostrum e
-  2. Ut enim ad minim veniam, quis nostrum e
-  3. ...
-2. Use Case Name (Should match functional requirement name)
-   ...
+  1. System notifies user that the item is out of stock
+  2. The item is not added to cart and the user's subtotal is not modified
+
+- **Alternate Sequence:** User proceeds to checkout
+
+  1. User proceeds to buy items (See use case "Buy Items")
+
+- **Alternate Sequence:** User continues to shop
+
+  1. User is returned to item page
+
+- **Postconditions:** The user will have the item added to their shopping cart with an adjusted subtotal if the item is in stock or they will be returned to the item page with their shopping cart remaining unmodified
+
+6. Buy item
+- **Pre-condition:** User has items in their shopping cart
+
+- **Trigger:** User chooses to checkout
+
+- ** Primary Sequence:** 
+
+  1. System prompts user to enter their shipping address
+  2. User enters their shipping address
+  3. System calculates the total cost given the shopping cart subtotal, shipping, and taxes in the user's region
+  4. System prompts user to enter payment details
+  5. User enters their payment information
+  6. System verifies method of payment
+  7. System sends items ordered and shipping details to seller
+
+- **alternate sequence:** Payment information is not valid
+
+  1. System notifies user that there is an error in the payment information provided
+  2. System prompts user to enter payment information again
+
+- **Postconditions:** The user will have their order placed and the seller will be notified that they have to deliver the item
