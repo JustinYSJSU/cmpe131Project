@@ -24,36 +24,49 @@
 
 ## Use Cases
 
-1. Use Case Name (Should match functional requirement name)
-- **Pre-condition:** <can be a list or short description> Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+1. Find items (User is able to search for an item they want to buy)
+- **Pre-condition:** User must be logged in
 
-- **Trigger:** <can be a list or short description> Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. 
+- **Trigger:** User clicks the search bar 
 
 - **Primary Sequence:**
   
-  1. Ut enim ad minim veniam, quis nostrum e
-  2. Et sequi incidunt 
-  3. Quis aute iure reprehenderit
-  4. ... 
-  5. ...
-  6. ...
-  7. ...
-  8. ...
-  9. ...
-  10. <Try to stick to a max of 10 steps>
+  1. User is promoted to enter the name of the item
+  2. User enters the name
+  3. User clicks submit
+  4. System displays items that match the name entered
 
-- **Primary Postconditions:** <can be a list or short description> 
+- **Primary Postconditions:** User sees all items that matched entered name 
 
-- **Alternate Sequence:** <you can have more than one alternate sequence to describe multiple issues that may arise>
+- **Alternate Sequence:** No items match entered name
   
-  1. Ut enim ad minim veniam, quis nostrum e
-  2. Ut enim ad minim veniam, quis nostrum e
-  3. ...
+  1. System displays a message telling user no items match name
+  2. Propmts user to enter a new name 
 
-- **Alternate Sequence <optional>:** <you can have more than one alternate sequence to describe multiple issues that may arise>
-  
-  1. Ut enim ad minim veniam, quis nostrum e
-  2. Ut enim ad minim veniam, quis nostrum e
-  3. ...
-2. Use Case Name (Should match functional requirement name)
-   ...
+- **Alternative Postconditions:** User can enter a new name
+
+2. Add item to seller store (User is able to put items out for sale)
+- **Pre-condition**: User must be logged in
+
+- **Trigger:** User clicks "Sell" button
+
+- **Primary Sequence:**
+  1. User is prompted to enter the name of the item they wish to sell
+  2. User enters name
+  3. User is promoted to attach images of the item (see use case "add pictures for items")
+  4. User attches images
+  5. User is promoted to enter a price for the item (price is positive non zero)
+  6. User enters price 
+
+- **Primary Postconditions:** The item the user wishes to sell has been 
+put out for sale
+
+- **Alternate Sequence:** The user has left a field blank or filled out a 
+field incorrectly (neagtive price, etc)
+ 1. System alerts user that certain fields have an error 
+ 2. User is prompted to fix those fields 
+ 3. User fixes the fields
+ 4. User submits changes
+
+- **Alternate Postconditions:** The fields have been fixed and the item
+has been put out for sale. 
