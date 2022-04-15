@@ -120,3 +120,31 @@ field incorrectly (neagtive price, etc)
 
 - **Alternate Postconditions:** The fields have been fixed and the item
 has been put out for sale. 
+
+11. User profiles
+- **Pre-condition:** 
+  The user is logged in to their account.
+
+- **Trigger:** 
+  The user left-clicks their name at the top-right corner of the website.
+
+- **Primary Sequence:**
+
+  1. Website opens a seperate window with the URL (/profile).
+  2. Page loads and displays user's name, profile picture, and description. 
+  3. If changes are made, the user can choose to save them.
+
+- **Primary Postconditions:** 
+
+  Any changes made to the user's profile are saved or discarded, profile window is closed, and the user may continue browsing the website.
+
+- **Alternate Sequence:** User changes their profile without clicking "Save changes".
+
+  1. Ask the user via a message at the top of the page whether they would like to discard their changes.
+  2. If they click "Save", changes are saved.
+  3. Otherwise, if they click "Discard changes", then the profile is unchanged and the user may return to browsing the website.
+
+- **Alternate Sequence:** Profile is edited such that user's name is blank
+  
+  1. Display at top of profile page that a name cannot be blank and is a required field.
+  2. Allow the user to re-enter a valid name.
