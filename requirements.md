@@ -18,7 +18,7 @@
 ## Non-functional Requirements
 
 1. Only expeceted to work on FireFox
-2. non-functional
+2. The user should be able to customize the color theme of the website.
 3. non-functional
 4. non-functional
 
