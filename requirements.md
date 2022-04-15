@@ -17,7 +17,7 @@
 
 ## Non-functional Requirements
 
-1. non-functional
+1. Only expeceted to work on FireFox
 2. non-functional
 3. non-functional
 4. non-functional
