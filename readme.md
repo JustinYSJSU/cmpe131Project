@@ -2,4 +2,4 @@
 - Justin Yamamoto (@JustinYSJSU)
 - Trung Huynh (@tailsspeed)
 - Joe Moules (@JoeMoules)
-- Name (@username)
+- Zachary Woo (@zacharywoo23)
