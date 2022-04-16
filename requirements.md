@@ -152,6 +152,24 @@ has been put out for sale.
 12. Add pictures for items
 - **Pre-condition:** 
 The user is logged in to their account.
+
+
+- **Trigger:**
+The user left-clicks the "Add picture for item" button below an item label"
+
+- **Primary Sequence:**
+
+1. Website opens up a file explorer window on user's PC that only shows PNG/JPEG files
+2. User selects one or more PNG/JPEG file(s)
+3. User left-clicks the "Open" button on the file explorer window
+
+- **Primary Postconditions:**
+
+Website displays the PNG/JPEG file(s) as images on the item's individual product page.
+
+- **Alternative Sequence:** User doesn't select a PNG/JPEG file and left-clicks "Open" on the file explorer window
+
+=======
   
 - **Trigger:**
 The user left-clicks the "Add picture for item" button below an item label"
@@ -173,7 +191,7 @@ Website displays the PNG/JPEG file(s) as images on the item's individual product
 3. Error popup closes
 4. User selects PNG/JPEG file(s)
 5. User left-clicks the "Open" button
-  
+
 - **Alternative Postconditions:**
 
 Website displays the PNG/JPEG file(s) as images on the item's individual product page.
