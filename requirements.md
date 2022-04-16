@@ -168,7 +168,7 @@ Website displays the PNG/JPEG file(s) as images on the item's individual product
 - **Alternative Sequence:** User doesn't select a PNG/JPEG file and left-clicks "Open" on the file explorer window
 
 - **Trigger:**
-The user left-clicks the "Add picture for item" button below an item label"
+The user left-clicks the "Add picture for item" button below an item label
    
 - **Primary Sequence:**
 
