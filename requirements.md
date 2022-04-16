@@ -1,4 +1,3 @@
-## <remove all of the example text and notes in < > such as this one>
 
 ## Functional Requirements
 
@@ -22,9 +21,60 @@
 3. non-functional
 4. non-functional
 
+
 ## Use Cases
 
-1. Find items (User is able to search for an item they want to buy)
+5. Add to cart
+- **Pre-condition:** User is viewing an item
+
+- **Trigger** User selects "Add to Cart" option
+
+- **Primary Sequence:**
+
+  1. System verifies item availability
+  2. System adds item to a list of items that have been added to the cart
+  3. System adjusts price total of items in shopping cart 
+  4. System prompts user with the option to checkout or continue shopping
+
+- **Alternate Sequence:** Item is out of stock
+
+  1. System notifies user that the item is out of stock
+  2. The item is not added to cart and the user's subtotal is not modified
+
+- **Alternate Sequence:** User proceeds to checkout
+
+  1. User proceeds to buy items (See use case "Buy Items")
+
+- **Alternate Sequence:** User continues to shop
+
+  1. User is returned to item page
+
+- **Postconditions:** The user will have the item added to their shopping cart with an adjusted subtotal if the item is in stock or they will be returned to the item page with their shopping cart remaining unmodified
+
+6. Buy item
+- **Pre-condition:** User has items in their shopping cart
+
+- **Trigger:** User chooses to checkout
+
+- ** Primary Sequence:** 
+
+  1. System prompts user to enter their shipping address
+  2. User enters their shipping address
+  3. System calculates the total cost given the shopping cart subtotal, shipping, and taxes in the user's region
+  4. System prompts user to enter payment details
+  5. User enters their payment information
+  6. System verifies method of payment
+  7. System sends items ordered and shipping details to seller
+
+- **alternate sequence:** Payment information is not valid
+
+  1. System notifies user that there is an error in the payment information provided
+  2. System prompts user to enter payment information again
+
+- **Postconditions:** The user will have their order placed and the seller will be notified that they have to deliver the item
+
+
+7. Find items (User is able to search for an item they want to buy)
 - **Pre-condition:** User must be logged in
 
 - **Trigger:** User clicks the search bar 
@@ -45,7 +95,7 @@
 
 - **Alternative Postconditions:** User can enter a new name
 
-2. Add item to seller store (User is able to put items out for sale)
+8. Add item to seller store (User is able to put items out for sale)
 - **Pre-condition**: User must be logged in
 
 - **Trigger:** User clicks "Sell" button
@@ -70,3 +120,31 @@ field incorrectly (neagtive price, etc)
 
 - **Alternate Postconditions:** The fields have been fixed and the item
 has been put out for sale. 
+
+11. User profiles
+- **Pre-condition:** 
+  The user is logged in to their account.
+
+- **Trigger:** 
+  The user left-clicks their name at the top-right corner of the website.
+
+- **Primary Sequence:**
+
+  1. Website opens a seperate window with the URL (/profile).
+  2. Page loads and displays user's name, profile picture, and description. 
+  3. If changes are made, the user can choose to save them.
+
+- **Primary Postconditions:** 
+
+  Any changes made to the user's profile are saved or discarded, profile window is closed, and the user may continue browsing the website.
+
+- **Alternate Sequence:** User changes their profile without clicking "Save changes".
+
+  1. Ask the user via a message at the top of the page whether they would like to discard their changes.
+  2. If they click "Save", changes are saved.
+  3. Otherwise, if they click "Discard changes", then the profile is unchanged and the user may return to browsing the website.
+
+- **Alternate Sequence:** Profile is edited such that user's name is blank
+  
+  1. Display at top of profile page that a name cannot be blank and is a required field.
+  2. Allow the user to re-enter a valid name.
