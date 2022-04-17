@@ -16,10 +16,10 @@
 
 ## Non-functional Requirements
 
-1. Only expeceted to work on FireFox
+1. The website is expected to be fully functional on FireFox.
 2. The user should be able to customize the color theme of the website.
-3. non-functional
-4. non-functional
+3. Finding items shall take no longer than 5 seconds to display search results.
+4. Price of items are to be displayed in USD (United States Dollars).
 
 
 ## Use Cases
