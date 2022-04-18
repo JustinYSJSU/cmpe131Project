@@ -1,18 +1,18 @@
 
 ## Functional Requirements
 
-1. Login
-2. Logout
-3. Create new account
-4. delete account
-5. Add to cart
-6. Buy Item
-7. Find items
-8. Add item to seller store
-9. See all items available from all of the sellers
-10. User ratings
-11. User profiles
-12. Add pictures for items
+1. Login (Justin)
+2. Logout (Trung)
+3. Create new account (Joe)
+4. delete account (Zach)
+5. Add to cart (Justin)
+6. Buy Item (Trung) 
+7. Find items (Joe)
+8. Add item to seller store (Zach)
+9. See all items available from all of the sellers (Justin)
+10. User ratings (Trung)
+11. User profiles (Joe)
+12. Add pictures for items (Zach)
 
 ## Non-functional Requirements
 
