@@ -8,3 +8,9 @@ Meeting Schedule
 - Team updates: None (first meeting)
 - Group Progress: Finished getting branches for each member set up. Worked
 on non-functional requirements and use cases for function requirements. 
+
+### 2022-04-22 at 14:00 - 14:20 
+- Attendees: Trung, Joe, Justin, Zach
+- Team updates: None 
+- Group Progress: Filled out the gnatt.xlst file with start/end dates, assigned functional 
+requirements to each member. 
