@@ -1,4 +1,4 @@
-# Project Name
+# SJSU CMPE131 Final Project
 - Justin Yamamoto (@JustinYSJSU) (lead)
 - Trung Huynh (@tailsspeed)
 - Joe Moules (@JoeMoules)
