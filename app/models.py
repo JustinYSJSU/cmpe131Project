@@ -11,6 +11,10 @@ class User(db.Model):
  payment_method_number = db.Column(db.String(19))
  payment_method_cvc = db.Column(db.String(3))
  payment_method_expdate = db.Column(db.String(5))
+ #add total number from reviews
+ #add total number of reviews
+ review_total_score = (db.Column(db.Integer))
+ review_total = (db.Column(db.Integer))
  #cart = ? 
 
  def __repr__(self):
