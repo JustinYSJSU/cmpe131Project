@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 import os
 
 #project base directory
@@ -12,5 +13,7 @@ appObj.config.from_mapping(
    )
 
 db = SQLAlchemy(appObj)
+login = LoginManager(appObj)
+login.login_view = 'login'
 
-from app import models #, routes
+from app import routes, models

@@ -1,10 +1,13 @@
 from app import db
+from app import login
+from flask_login import UserMixin
+from werkzeug.security import generate_password_hash, check_password_hash
 
-class User(db.Model):
+class User(UserMixin, db.Model):
  id = db.Column(db.Integer, primary_key = True)
- username = db.Column(db.String(64))
+ username = db.Column(db.String(16))
  email = db.Column(db.String(64))
- password_hash = db.Column(db.String(64))
+ password_hash = db.Column(db.String(128))
  address = db.Column(db.String(128))
  payment_method_company = db.Column(db.String(10))
  #number is 19 characters to account for spaces between every 4 numbers
@@ -16,5 +19,15 @@ class User(db.Model):
  #number of total reviews
  review_total = db.Column(db.Integer)
 
+ def set_password(self, password):
+  self.password_hash = generate_password_hash(password)
+
+ def check_password(self, password):
+  return check_password_hash(self.password_hash, password)
+
  def __repr__(self):
   return f'<User {self.username} {self.email} {self.address}>'
+
+@login.user_loader
+def load_user(id):
+ return User.query.get(int(id))
