@@ -14,3 +14,9 @@ on non-functional requirements and use cases for function requirements.
 - Team updates: None 
 - Group Progress: Filled out the gnatt.xlst file with start/end dates, assigned functional 
 requirements to each member. 
+
+###2022-4-26 at 17:30 - 17:45 (In class)
+- Attendees: Trung, Joe, Justin
+- Team updates: Justin worked on implementing the User database. 
+- Group Progress: Worked more on the User database and implementing the item section of the database and 
+the database relationship between users and items
