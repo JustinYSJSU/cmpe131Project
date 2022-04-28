@@ -26,6 +26,8 @@ def login():
    flash('Username does not exist. Please enter an existing username')
  return render_template('login.html', login_form = login_form)
 
+
 @appObj.route('/home')
+@login_required
 def home():
  return render_template('home.html')
