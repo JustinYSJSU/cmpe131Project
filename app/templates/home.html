@@ -3,10 +3,20 @@
  <head>
   <title> yaBe-Home </title>
  </head>
- 
+
+  
  <body>
   <h1> Welcome (back) to yaBe! </h1>
   <p> yaBe is a totally original online store </p>
+   
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+   {% for message in messages %}
+    <p> {{message}} </p>
+   {% endfor %}
+  {% endif %}
+  {% endwith %}
+
  </body>
 
  <form action = "" method = "post" novalidate>
@@ -20,4 +30,5 @@
   </p>
   </form>
 
+  <a href = "sell_item"> Want to sell? Click here! </a>
 </html>

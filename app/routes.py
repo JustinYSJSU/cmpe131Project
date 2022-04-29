@@ -1,11 +1,12 @@
 from app import appObj
 from app.user_login import LoginUser
 from app.item_search import ItemSearch
+from app.item_sale import SellItem
 
 from flask import render_template, flash, redirect, url_for
 
 from app import db
-from app.models import User 
+from app.models import User, Item
 
 from flask_login import login_user
 from flask_login import logout_user
@@ -28,15 +29,39 @@ def login():
  return render_template('login.html', login_form = login_form)
 
 
-@appObj.route('/home')
+@appObj.route('/home', methods = ['GET', 'POST'])
 @login_required
 #the home page allows users to serach for items
+#and put items up for sale
 def home():
  search_form = ItemSearch()
- if search_form.validate_on_submit(): #valid input
-  #filter the database of items
-  #if the item exists 
-   #reroute to the page for that item (return redirect, etc)
-  #else
-   #tell the user the item doesn't exist 
+
+ if search_form.validate_on_submit(): 
+  item_list = Item.query.filter_by(name = search_form.item_name.data).all()
+  if len(item_list) != 0:
+   return render_template('display_item.html',
+          items = item_list, item_name = search_form.item_name.data)   
+  else:
+   flash('Item was not found. Please try again')
  return render_template('home.html', search_form = search_form)
+
+@appObj.route('/sell_item', methods = ['GET', 'POST'])
+@login_required
+def sell_item():
+ sell_form = SellItem()
+ if sell_form.validate_on_submit():
+  if sell_form.item_sell_price.data > 0:
+   #need to add image later
+   seller = current_user
+   item = Item(name = sell_form.item_sell_name.data, 
+       price = sell_form.item_sell_price.data, 
+       image = sell_form.item_image.data,
+       description = sell_form.item_sell_desc.data, 
+       user_seller_id = seller.id)
+   db.session.add(item)
+   db.session.commit()
+   flash("Thank you! Item has been put out for sale")
+  else:
+   flash('Item price must be above $0.00. Please try again')
+ return render_template('sell_item.html', sell_form = sell_form)
+
