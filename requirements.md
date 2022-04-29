@@ -11,7 +11,7 @@
 8. Add item to seller store (Justin)
 9. See all items available from all of the sellers (Zach)
 10. User ratings (Trung)
-11. User profiles (Joe)
+11. User profiles (Zach)
 12. Add pictures for items (Trung)
 
 ## Non-functional Requirements
