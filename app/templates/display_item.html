@@ -8,8 +8,8 @@
    
    {% for item in items %}
     <p> {{item.name}} for ${{item.price}} </p>
-    <p> Item Description: {{item.description}} </p> <br>
-
+    <p> Item Description: {{item.description}} </p> 
+    <p> Seller: {{item.user_seller_name}} </p> <br>
     
    {% endfor %}
   </body>

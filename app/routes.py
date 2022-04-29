@@ -62,7 +62,7 @@ def sell_item():
        price = sell_form.item_sell_price.data, 
        image = sell_form.item_image.data,
        description = sell_form.item_sell_desc.data, 
-       user_seller_id = seller.id)
+       user_seller_name = seller.username)
    db.session.add(item)
    db.session.commit()
    flash("Thank you! Item has been put out for sale")
