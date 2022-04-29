@@ -20,3 +20,11 @@ requirements to each member.
 - Team updates: Justin worked on implementing the User database. 
 - Group Progress: Worked more on the User database and implementing the item section of the database and 
 the database relationship between users and items
+
+### 2022-4-28 at 16:30 - 17:45 (In class)
+- Attendees: Trung, Joe, Justin
+- Team updates: Justin worked on implementing the Login function
+                Joe worked on implementing the Create Account function
+                Trung worked on solving issues pulling from github
+- Group progress: Worked more on implementing Create Accoutn function as 
+well as stabilizing the git repository / github
