@@ -1,5 +1,6 @@
 from app import appObj
 from app.user_login import LoginUser
+from app.item_search import ItemSearch
 
 from flask import render_template, flash, redirect, url_for
 
@@ -29,5 +30,13 @@ def login():
 
 @appObj.route('/home')
 @login_required
+#the home page allows users to serach for items
 def home():
- return render_template('home.html')
+ search_form = ItemSearch()
+ if search_form.validate_on_submit(): #valid input
+  #filter the database of items
+  #if the item exists 
+   #reroute to the page for that item (return redirect, etc)
+  #else
+   #tell the user the item doesn't exist 
+ return render_template('home.html', search_form = search_form)

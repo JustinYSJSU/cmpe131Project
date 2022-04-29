@@ -9,4 +9,15 @@
   <p> yaBe is a totally original online store </p>
  </body>
 
+ <form action = "" method = "post" novalidate>
+   {{search_form.hidden_tag()}}
+  <p>
+   {{search_form.item_name.label}}<br>
+   {{search_form.item_name(size = 32)}} </br>
+  </p>
+  <p>
+   {{search_form.search}}  
+  </p>
+  </form>
+
 </html>
