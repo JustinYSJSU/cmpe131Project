@@ -1,3 +1,0 @@
-#ignore pycache directory from being committed
-app/__pycache__
-*.pyc
