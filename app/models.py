@@ -35,8 +35,10 @@ class Item(db.Model):
  price = db.Column(db.Float)
  image = db.Column(db.LargeBinary)
  description = db.Column(db.String(256))
- user_seller_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+# user_seller_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+ user_seller_name = db.Column(db.String, db.ForeignKey('user.username'))
 
 @login.user_loader
 def load_user(id):
  return User.query.get(int(id))
+
