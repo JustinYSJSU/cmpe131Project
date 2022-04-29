@@ -1,9 +1,12 @@
 from app import appObj
 from app.user_login import LoginUser
+
 from app.item_search import ItemSearch
 from app.item_sale import SellItem
+from app.createAccount import CreateUser
 
 from flask import render_template, flash, redirect, url_for
+from werkzeug.security import generate_password_hash
 
 from app import db
 from app.models import User, Item
@@ -13,6 +16,7 @@ from flask_login import logout_user
 from flask_login import current_user
 from flask_login import login_required
 
+#Justin
 @appObj.route('/', methods = ['GET', 'POST'])
 def login():
  login_form = LoginUser()
@@ -28,7 +32,7 @@ def login():
    flash('Username does not exist. Please enter an existing username')
  return render_template('login.html', login_form = login_form)
 
-
+#Justin
 @appObj.route('/home', methods = ['GET', 'POST'])
 @login_required
 #the home page allows users to serach for items
@@ -45,6 +49,7 @@ def home():
    flash('Item was not found. Please try again')
  return render_template('home.html', search_form = search_form)
 
+#Justin
 @appObj.route('/sell_item', methods = ['GET', 'POST'])
 @login_required
 def sell_item():
@@ -65,3 +70,26 @@ def sell_item():
    flash('Item price must be above $0.00. Please try again')
  return render_template('sell_item.html', sell_form = sell_form)
 
+#Joe
+@appObj.route('/createAccount', methods = ['GET', 'POST'])
+def createAccount():
+  accountForm = CreateUser()
+  if accountForm.validate_on_submit():
+    user=User()
+    user.username=accountForm.username.data
+    user.email=accountForm.email.data
+    user.set_password(accountForm.password.data)
+    user.address=accountForm.address.data
+    user.payment_method_company=accountForm.paymentMethodCompany.data
+    user.payment_method_number=accountForm.paymentNumber.data
+    user.payment_method_expdate=accountForm.paymentExpDate.data
+    user.payment_method_cvc=accountForm.paymentCVC.data
+    db.session.add(user)
+    db.session.commit()
+    print("user has been created")
+    return redirect('/')
+  return render_template('createAccount.html', accountForm = accountForm)
+
+@appObj.route('/testing')
+def redirectTest():
+  return redirect('/')

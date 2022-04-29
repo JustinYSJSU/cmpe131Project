@@ -5,14 +5,14 @@
 2. Logout (Trung)
 3. Create new account (Joe)
 4. delete account (Zach)
-5. Add to cart (Justin)
-6. Buy Item (Trung) 
-7. Find items (Joe)
-8. Add item to seller store (Zach)
-9. See all items available from all of the sellers (Justin)
+5. Add to cart (Joe)
+6. Buy Item (Joe) 
+7. Find items (Justin)
+8. Add item to seller store (Justin)
+9. See all items available from all of the sellers (Zach)
 10. User ratings (Trung)
-11. User profiles (Joe)
-12. Add pictures for items (Zach)
+11. User profiles (Zach)
+12. Add pictures for items (Trung)
 
 ## Non-functional Requirements
 
