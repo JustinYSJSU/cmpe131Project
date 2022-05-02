@@ -31,22 +31,22 @@
 
 - **Primary Sequence:**
 
-  1. A popup appears with a message saying, "Are you sure you want to delete your account" with a "Yes" and "No" button below the message
-  2. The user left-clicks the "Yes" button
+  1. Redirects user to delete account page
+  2. User inserts username and password into username and password text field
+  3. User left-clicks "Delete Account" button
 
 - **Primary Postconditions:**
 
-The user's account is deleted, a popup appears saying, "Your account has been deleted", and the user is sent back to the home page
+The user's account is deleted and the user is sent back to the home page
 
-- **Alternate Sequence:** The user accidently left-clicks the "Delete Account" button but doesn't want to delete their account
+- **Alternate Sequence:** The user doesn't enter in their username AND/OR password and clicks "Delete Account" button
 
-  1. A popup appears with a message saying, "Are you sure you want to delete your account" with a "Yes" and "No" button below the message
-  2. The user left-clicks the "No" button
+  1. Page shows, "Please enter username/password"
+  2. User enters username AND/OR password and clicks "Delete Account" button
 
-- **Alternate Postconditions:** The user's account is not deleted
+- **Alternate Postconditions:** The user's account is deleted
 
-  1. A popup appears saying, "Your account has not been deleted"
-  2. The user is sent back to the home page
+  1. User is sent back to the home page.
 
 5. Add to cart
 - **Pre-condition:** User is viewing an item
