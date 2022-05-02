@@ -24,6 +24,30 @@
 
 ## Use Cases
 
+4. Delete Account
+- **Pre-condition:** The user is in the user profiles page
+
+- **Trigger:** The user left-clicks the "Delete Account" button at the bottom of the user profiles screen
+
+- **Primary Sequence:**
+
+  1. A popup appears with a message saying, "Are you sure you want to delete your account" with a "Yes" and "No" button below the message
+  2. The user left-clicks the "Yes" button
+
+- **Primary Postconditions:**
+
+The user's account is deleted, a popup appears saying, "Your account has been deleted", and the user is sent back to the home page
+
+- **Alternate Sequence:** The user accidently left-clicks the "Delete Account" button but doesn't want to delete their account
+
+  1. A popup appears with a message saying, "Are you sure you want to delete your account" with a "Yes" and "No" button below the message
+  2. The user left-clicks the "No" button
+
+- **Alternate Postconditions:** The user's account is not deleted
+
+  1. A popup appears saying, "Your account has not been deleted"
+  2. The user is sent back to the home page
+
 5. Add to cart
 - **Pre-condition:** User is viewing an item
 
@@ -120,6 +144,23 @@ field incorrectly (negative price, etc)
 
 - **Alternate Postconditions:** The fields have been fixed and the item
 has been put out for sale. 
+
+9. See all items available
+- **Pre-condition:** The user is on the home page
+
+- **Trigger:** The user left-clicks the "Shop All Available Items" button
+
+- **Primary Sequence:**
+
+  1. The user is directed to the "All Available Items" page.
+
+- **Primary Postconditions:** 
+
+  The user is able to see all of the available items.
+
+- **Alternate Sequence:** The user is already on the "All Available Items" page.
+
+- **Alternate Postconditions:** The user is still redirected to the "All Available Items" page.
 
 11. User profiles
 - **Pre-condition:** 
