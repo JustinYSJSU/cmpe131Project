@@ -1,0 +1,18 @@
+<html>
+ <head>
+  <title> Landing Page </title>
+ </head>
+  
+  <body>
+   <h1> {{itemID}} </h1>
+   <p>{{selectedItem.name}}</p>
+   <p>{{selectedItem.price}}</p>
+   <form action="" method="post" nonvalidate> 
+    {{cartForm.hidden_tag()}}
+    <p>
+    {{cartForm.submit()}}
+    </p>
+   </forms>
+  </body>
+
+</html>
