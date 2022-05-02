@@ -33,16 +33,16 @@
 
   1. Redirects user to delete account page
   2. User inserts username and password into username and password text field
-  3. User left-clicks submit button
+  3. User left-clicks "Delete Account" button
 
 - **Primary Postconditions:**
 
 The user's account is deleted and the user is sent back to the home page
 
-- **Alternate Sequence:** The user doesn't enter in their username AND/OR password and clicks submit
+- **Alternate Sequence:** The user doesn't enter in their username AND/OR password and clicks "Delete Account" button
 
   1. Page shows, "Please enter username/password"
-  2. User enters username AND/OR password and clicks submit
+  2. User enters username AND/OR password and clicks "Delete Account" button
 
 - **Alternate Postconditions:** The user's account is deleted
 
