@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>Delete Account</title>
+    </head>
+    <body>
+        <h1>Create Account</h1>
+        <form action="" method="post" nonvalidate> 
+            {{accountForm.hidden_tag()}}
+            <p>
+            {{accountForm.username.label}}<br>
+            {{accountForm.username(size = 16)}}</br>
+            {{accountForm.password.label}}<br>
+            {{accountForm.password(size = 128)}}</br>
+            </p>
+            <p>
+            {{accountForm.submit()}}
+            </p>
+        </form>
+    </body>
+</html>
