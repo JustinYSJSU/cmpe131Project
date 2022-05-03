@@ -24,6 +24,30 @@
 
 ## Use Cases
 
+4. Delete Account
+- **Pre-condition:** The user is in the user profiles page
+
+- **Trigger:** The user left-clicks the "Delete Account" button at the bottom of the user profiles screen
+
+- **Primary Sequence:**
+
+  1. Redirects user to delete account page
+  2. User inserts username and password into username and password text field
+  3. User left-clicks "Delete Account" button
+
+- **Primary Postconditions:**
+
+The user's account is deleted and the user is sent back to the home page
+
+- **Alternate Sequence:** The user doesn't enter in their username AND/OR password and clicks "Delete Account" button
+
+  1. Page shows, "Please enter username/password"
+  2. User enters username AND/OR password and clicks "Delete Account" button
+
+- **Alternate Postconditions:** The user's account is deleted
+
+  1. User is sent back to the home page.
+
 5. Add to cart
 - **Pre-condition:** User is viewing an item
 
@@ -121,7 +145,24 @@ field incorrectly (negative price, etc)
 - **Alternate Postconditions:** The fields have been fixed and the item
 has been put out for sale. 
 
-11. User profiles
+9. See all items available
+- **Pre-condition:** The user is on the home page
+
+- **Trigger:** The user left-clicks the "Shop All Available Items" button
+
+- **Primary Sequence:**
+
+  1. The user is directed to the "All Available Items" page.
+
+- **Primary Postconditions:** 
+
+  The user is able to see all of the available items.
+
+- **Alternate Sequence:** The user is already on the "All Available Items" page.
+
+- **Alternate Postconditions:** The user is still redirected to the "All Available Items" page.
+
+11. User profile
 - **Pre-condition:** 
   The user is logged in to their account.
 
@@ -131,7 +172,7 @@ has been put out for sale.
 - **Primary Sequence:**
 
   1. Website opens a seperate window with the URL (/profile).
-  2. Page loads and displays user's name, profile picture, and description. 
+  2. Page loads and displays user's name, profile picture, description, etc 
   3. If changes are made, the user can choose to save them.
 
 - **Primary Postconditions:** 

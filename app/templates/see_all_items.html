@@ -1,11 +1,9 @@
 <html>
  <head>
-  <title> yaBe - {{item_name}} </title>
+  <title> yaBe - All Items Available</title>
  </head>
   
   <body>
-   <h1> Search results for "{{item_name}}" </h1>
-   
    {% for item in items %}
     <p> {{item.name}} for ${{item.price}} </p>
     <p> Item Description: {{item.description}} </p> 

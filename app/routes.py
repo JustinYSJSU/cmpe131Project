@@ -1,20 +1,26 @@
 from app import appObj
 from app.user_login import LoginUser
 
+
 from app.item_search import ItemSearch
 from app.item_sale import SellItem
 from app.createAccount import CreateUser
+from app.delete_user import DeleteUser
+
+from app.addToCart import addToCart, shoppingCart, checkoutForm
 
 from flask import render_template, flash, redirect, url_for
 from werkzeug.security import generate_password_hash
 
 from app import db
-from app.models import User, Item
+from app.models import User, Item, Order
 
 from flask_login import login_user
 from flask_login import logout_user
 from flask_login import current_user
 from flask_login import login_required
+
+sessionCart = shoppingCart()
 
 #Justin
 @appObj.route('/', methods = ['GET', 'POST'])
@@ -25,6 +31,7 @@ def login():
   if user != None:
    if user.check_password(login_form.password.data) == True:
     login_user(user)
+    sessionCart.reset()
     return redirect(url_for('home'))
    else:
     flash('Incorrect password. Please try again.')
@@ -32,14 +39,14 @@ def login():
    flash('Username does not exist. Please enter an existing username')
  return render_template('login.html', login_form = login_form)
 
-#Justin
+#Justin 
 @appObj.route('/home', methods = ['GET', 'POST'])
 @login_required
 #the home page allows users to serach for items
 #and put items up for sale
 def home():
  search_form = ItemSearch()
-
+  
  if search_form.validate_on_submit(): 
   item_list = Item.query.filter_by(name = search_form.item_name.data).all()
   if len(item_list) != 0:
@@ -47,6 +54,7 @@ def home():
           items = item_list, item_name = search_form.item_name.data)   
   else:
    flash('Item was not found. Please try again')
+
  return render_template('home.html', search_form = search_form)
 
 #Justin
@@ -90,6 +98,54 @@ def createAccount():
     return redirect('/')
   return render_template('createAccount.html', accountForm = accountForm)
 
-@appObj.route('/testing')
-def redirectTest():
-  return redirect('/')
+#Zach / Justin
+@appObj.route('/deleteUser', methods = ['GET', 'POST'])
+def deleteAccount():
+ account_form = DeleteUser()
+ if account_form.validate_on_submit():
+  user = User.query.filter_by(username = account_form.username.data).first()
+  if user != None:
+   if user.check_password(account_form.password.data) == True:
+    u = User.query.filter_by(username = account_form.username.data)
+    item = Item.query.filter_by(user_seller_name = user.username).all()
+    for i in items:
+     db.session.delete(i)
+    db.session.delete(user)
+    db.session.commit()
+    flash("Your account has been deleted successfully")
+   else:
+    flash("Please enter the correct password")
+  else:
+   flash("Please enter the correct username")
+ return render_template('deleteUser.html', accountForm = account_form)
+
+#Joe
+@appObj.route('/<itemID>', methods = ['GET', 'POST'])
+def landingPage(itemID):
+  selectedItem = Item.query.filter_by(id = itemID).all()
+  cartOption = addToCart()
+  if cartOption.validate_on_submit():
+    sessionCart.addToCart(selectedItem[0].name, selectedItem[0].price)
+    print("item has been added to the cart")
+    return redirect('/cart')
+  return render_template("landing.html", itemID = itemID, selectedItem = selectedItem[0], cartForm = cartOption)
+
+#Joe
+@appObj.route('/cart', methods = ['GET', 'POST'])
+def displayCart():
+  checkout = checkoutForm()
+  if checkout.validate_on_submit():
+    buyer = current_user
+    s = ", "
+    s = s.join(sessionCart.cartNames)
+    O = Order(itemList = s, subtotal = sessionCart.subtotal, buyerID = buyer.id)
+    db.session.add(O)
+    db.session.commit()
+    return redirect('/checkout')
+  return render_template("displayCart.html", cart = sessionCart, cartForm = checkout)
+
+#Joe
+@appObj.route('/checkout')
+def checkout():
+  orders = Order.query.filter_by(buyerID = current_user.id)
+  return render_template("checkout.html", orders = orders)
