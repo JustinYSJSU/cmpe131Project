@@ -162,7 +162,7 @@ has been put out for sale.
 
 - **Alternate Postconditions:** The user is still redirected to the "All Available Items" page.
 
-11. User profiles
+11. User profile
 - **Pre-condition:** 
   The user is logged in to their account.
 
@@ -172,7 +172,7 @@ has been put out for sale.
 - **Primary Sequence:**
 
   1. Website opens a seperate window with the URL (/profile).
-  2. Page loads and displays user's name, profile picture, and description. 
+  2. Page loads and displays user's name, profile picture, description, etc 
   3. If changes are made, the user can choose to save them.
 
 - **Primary Postconditions:** 
