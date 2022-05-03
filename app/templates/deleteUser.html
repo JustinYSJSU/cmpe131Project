@@ -1,8 +1,20 @@
 <html>
     <head>
-        <title>Delete Account</title>
+        <title> yaBe-Delete Account</title>
     </head>
+
     <body>
+
+     <h1>Delete Account</h1> 
+      
+      {% with messages = get_flashed_messages() %}
+       {% if messages %}
+        {% for message in messages %}
+          <p> {{message}} </p>
+        {% endfor %}
+       {% endif %}
+      {% endwith %}
+
         <h1>Delete Account</h1>
         <form action="" method="post" nonvalidate> 
             {{accountForm.hidden_tag()}}
@@ -16,5 +28,5 @@
             {{accountForm.submit()}}
             </p>
         </form>
-    </body>
+
 </html>
