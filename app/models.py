@@ -19,6 +19,7 @@ class User(UserMixin, db.Model):
  #number of total reviews
  review_total = db.Column(db.Integer)
  items = db.relationship('Item')
+ orders = db.relationship('Order')
 
  def set_password(self, password):
   self.password_hash = generate_password_hash(password)
@@ -37,6 +38,12 @@ class Item(db.Model):
  description = db.Column(db.String(256))
 # user_seller_id = db.Column(db.Integer, db.ForeignKey('user.id'))
  user_seller_name = db.Column(db.String, db.ForeignKey('user.username'))
+
+class Order(db.Model):
+  id = db.Column(db.Integer, primary_key = True)
+  itemList = db.Column(db.String(1024))
+  subtotal = db.Column(db.Float)
+  buyerID = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 @login.user_loader
 def load_user(id):

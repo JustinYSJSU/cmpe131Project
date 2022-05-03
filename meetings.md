@@ -28,3 +28,9 @@ the database relationship between users and items
                 Trung worked on solving issues pulling from github
 - Group progress: Worked more on implementing Create Accoutn function as 
 well as stabilizing the git repository / github
+
+### 2022-5-01 at 14:00 - 14:20
+- Attendees: Trung, Joe, Justin
+- Team updates: Joe implemented the Create Account function
+                Justin implemented the Login, Search for item, and 
+                add item to store functions

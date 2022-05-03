@@ -1,0 +1,21 @@
+<html>
+ <head>
+  <title> Shopping Cart </title>
+ </head>
+  
+  <body>
+   <h1> Shopping Cart </h1>
+   {% for items in cart.cart %}
+   <p>{{items[0]}} {{items[1]}}</p>
+   {%endfor%}
+   {{cart.subtotal}}
+   <form action="" method="post" nonvalidate> 
+    {{cartForm.hidden_tag()}}
+    <p>
+    {{cartForm.submit()}}
+    </p>
+   </forms>
+   <a href = 'home'>Continue shopping</a>
+  </body>
+  
+</html>
