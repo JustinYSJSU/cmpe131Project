@@ -1,0 +1,11 @@
+<html>
+    <head>
+        <title>Checkout</title>
+    </head>
+    <body>
+        <h1>Previous Orders</h1>
+        {%for item in orders%}
+        {{item.itemList}} {{item.subtotal}}
+        {%endfor%}
+    </body>
+</html>

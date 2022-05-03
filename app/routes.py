@@ -4,13 +4,13 @@ from app.user_login import LoginUser
 from app.item_search import ItemSearch
 from app.item_sale import SellItem
 from app.createAccount import CreateUser
-from app.addToCart import addToCart, shoppingCart
+from app.addToCart import addToCart, shoppingCart, checkoutForm
 
 from flask import render_template, flash, redirect, url_for
 from werkzeug.security import generate_password_hash
 
 from app import db
-from app.models import User, Item
+from app.models import User, Item, Order
 
 from flask_login import login_user
 from flask_login import logout_user
@@ -104,6 +104,20 @@ def landingPage(itemID):
     return redirect('/cart')
   return render_template("landing.html", itemID = itemID, selectedItem = selectedItem[0], cartForm = cartOption)
 
-@appObj.route('/cart')
+@appObj.route('/cart', methods = ['GET', 'POST'])
 def displayCart():
-  return render_template("displayCart.html", cart = sessionCart)
+  checkout = checkoutForm()
+  if checkout.validate_on_submit():
+    buyer = current_user
+    s = ", "
+    s = s.join(sessionCart.cartNames)
+    O = Order(itemList = s, subtotal = sessionCart.subtotal, buyerID = buyer.id)
+    db.session.add(O)
+    db.session.commit()
+    return redirect('/checkout')
+  return render_template("displayCart.html", cart = sessionCart, cartForm = checkout)
+
+@appObj.route('/checkout')
+def checkout():
+  orders = Order.query.filter_by(buyerID = current_user.id)
+  return render_template("checkout.html", orders = orders)
