@@ -11,7 +11,7 @@ can put their own items up for sale and buy items from other users, similar
 to the website "ebay". 
 
 ## Technologies
-- Flask (flask-login
+- Flask (flask-login, flask-wtf)
 - SQLAlchemy
 - Python (3.8.10)
 - HTML
@@ -40,6 +40,7 @@ pip3 install python3
 pip3 install flask
 pip3 install flask-login
 pip3 install flask-sqlalchemy
+pip3 install flask-wtf
 pip3 install git
 ```
 - Clone the git repository with using the following command
