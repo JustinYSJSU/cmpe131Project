@@ -18,7 +18,7 @@ to the website "ebay".
 - CSS
 - Bootstrap
 
-## List of features + who implemented them
+## List of features/functions + who implemented them
 - Login (Justin)
 - Logout (Trung)
 - Create account (Joe)
@@ -33,11 +33,24 @@ to the website "ebay".
 - Add pictures for items (Trung)
 
 ## How to run
-- Make sure you have Python, SQAlchemy, and Flask installed on your computer
-- To install these technologies, use the following commands
+- Make sure you have Python, SQAlchemy, Flask, and git installed on your computer
+- To install these technologies, use the following commands on the Linux terminal
 ```
-pip3 install python
+pip3 install python3
 pip3 install flask
 pip3 install flask-login
 pip3 install flask-sqlalchemy
+pip3 install git
+```
+- Clone the git repository with using the following command
+```
+git clone https://github.com/JustinYSJSU/cmpe131Project
+```
+- Move into the cmpe131Project folder with the command
+```
+cd cmpe131Project
+```
+- Run the project with the command(s)
+```
+python3 run.py
 ```
