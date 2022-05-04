@@ -33,14 +33,10 @@ to the website "ebay".
 - Add pictures for items (Trung)
 
 ## How to run
-- Install pip3 with the following command (Linux Terminal)
-```
-sudo apt-get install python3-pip
-```
 - Make sure you have Python, SQAlchemy, Flask, and git installed on your computer
 - To install these technologies, use the following commands on the Linux terminal
 ```
-pip3 install python3
+sudo apt-get install python3
 pip3 install flask
 pip3 install flask-login
 pip3 install flask-sqlalchemy
