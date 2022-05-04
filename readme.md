@@ -4,20 +4,20 @@
 - Joe Moules (@JoeMoules)
 - Zachary Woo (@zacharywoo23)
 
-##Introduction
+## Introduction
 This is our final project for CMPE131 (Software Engineering I) at
 San Jose State University. We created an online store where users 
 can put their own items up for sale and buy items from other users, similar 
 to the website "ebay". 
 
-##Technologies
+## Technologies
 - Flask 
 - Python (3.8.10)
 - HTML
 - CSS
 - Bootstrap
 
-##List of features + who implemented them
+## List of features + who implemented them
 1.) Login (Justin)
 2.) Logout (Trung)
 3.) Create account (Joe)
