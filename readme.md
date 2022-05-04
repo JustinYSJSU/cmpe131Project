@@ -1,8 +1,4 @@
 ## SJSU CMPE131 Final Project
-- Justin Yamamoto (@JustinYSJSU) (lead)
-- Trung Huynh (@tailsspeed)
-- Joe Moules (@JoeMoules)
-- Zachary Woo (@zacharywoo23)
 
 ## Introduction
 This is our final project for CMPE131 (Software Engineering I) at
@@ -35,23 +31,9 @@ to the website "ebay".
 ## How to run
 - Make sure you have Python, SQAlchemy, Flask, and git installed on your computer
 - To install these technologies, use the following commands on the Linux terminal
-```
-sudo apt-get install python3
-pip3 install flask
-pip3 install flask-login
-pip3 install flask-sqlalchemy
-pip3 install flask-wtf
-pip3 install git
-```
-- Clone the git repository with using the following command
-```
-git clone https://github.com/JustinYSJSU/cmpe131Project
-```
-- Move into the cmpe131Project folder with the command
-```
-cd cmpe131Project
-```
-- Run the project with the command(s)
-```
-python3 run.py
-```
+
+## Credits
+- Justin Yamamoto (@JustinYSJSU) (lead)
+- Trung Huynh (@tailsspeed)
+- Joe Moules (@JoeMoules)
+- Zachary Woo (@zacharywoo23)
