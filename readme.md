@@ -11,7 +11,8 @@ can put their own items up for sale and buy items from other users, similar
 to the website "ebay". 
 
 ## Technologies
-- Flask 
+- Flask (flask-login
+- SQLAlchemy
 - Python (3.8.10)
 - HTML
 - CSS
@@ -31,3 +32,12 @@ to the website "ebay".
 - User profiles (Zach)
 - Add pictures for items (Trung)
 
+## How to run
+- Make sure you have Python, SQAlchemy, and Flask installed on your computer
+- To install these technologies, use the following commands
+```
+pip3 install python
+pip3 install flask
+pip3 install flask-login
+pip3 install flask-sqlalchemy
+```
