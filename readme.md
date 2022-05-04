@@ -18,16 +18,16 @@ to the website "ebay".
 - Bootstrap
 
 ## List of features + who implemented them
-1.) Login (Justin)
-2.) Logout (Trung)
-3.) Create account (Joe)
-4.) Delete account (Zach)
-5.) Add to cart (Joe)
-6.) Buy items (Joe)
-7.) Find items (Justin)
-8.) Add item to store (Justin)
-9.) See available items (Zach)
-10.) User ratings (Trung)
-11.) User profiles (Zach)
-12.) Add pictures for items (Trung)
+- Login (Justin)
+- Logout (Trung)
+- Create account (Joe)
+- Delete account (Zach)
+- Add to cart (Joe)
+- Buy items (Joe)
+- Find items (Justin)
+- Add item to store (Justin)
+- See available items (Zach)
+- User ratings (Trung)
+- User profiles (Zach)
+- Add pictures for items (Trung)
 
