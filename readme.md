@@ -39,6 +39,18 @@ pip3 install flask-sqlalchemy
 pip3 install flask-wtf
 pip3 install git
 ```
+- Clone the project repository using the following command
+```
+git clone https://github.com/JustinYSJSU/cmpe131Project
+```
+- Move to the cmpe131Project directory using the following command (assuming you're in the home directory)
+```
+cd cmpe131Project
+```
+- Run the project using the following command
+```
+python3 run.py
+```
 
 ## Credits
 - Justin Yamamoto (@JustinYSJSU) (lead)
