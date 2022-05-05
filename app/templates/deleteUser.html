@@ -15,17 +15,18 @@
        {% endif %}
       {% endwith %}
 
-        <form action =" " method ="post" nonvalidate> 
-            {{accountForm.hidden_tag()}}
-            <p>
-            {{accountForm.username.label}}<br>
-            {{accountForm.username(size = 16)}}</br>
-            {{accountForm.password.label}}<br>
-            {{accountForm.password(size = 128)}}</br>
-            </p>
-            <p>
-            {{accountForm.submit()}}
-            </p>
-        </form>
+      <form action =" " method ="post" nonvalidate> 
+       {{accountForm.hidden_tag()}}
+       <p>
+         {{accountForm.username.label}}<br>
+         {{accountForm.username(size = 16)}}</br>
+         {{accountForm.password.label}}<br>
+         {{accountForm.password(size = 128)}}</br>
+       </p>
+
+       <p>
+        {{accountForm.submit()}}
+       </p>
+       </form>
 
 </html>

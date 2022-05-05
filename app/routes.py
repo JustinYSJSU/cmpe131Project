@@ -64,13 +64,13 @@ def sell_item():
  sell_form = SellItem()
  if sell_form.validate_on_submit():
   if sell_form.item_sell_price.data > 0:
-   #need to add image later
+   #Need to add image in milestone 3
    seller = current_user
    item = Item(name = sell_form.item_sell_name.data, 
-       price = sell_form.item_sell_price.data, 
-       image = sell_form.item_image.data,
-       description = sell_form.item_sell_desc.data, 
-       user_seller_name = seller.username)
+               price = sell_form.item_sell_price.data, 
+               image = sell_form.item_image.data,
+               description = sell_form.item_sell_desc.data, 
+               user_seller_name = seller.username)
    db.session.add(item)
    db.session.commit()
    flash("Thank you! Item has been put out for sale")
@@ -107,11 +107,13 @@ def deleteAccount():
   if user != None:
    if user.check_password(account_form.password.data) == True:
     u = User.query.filter_by(username = account_form.username.data)
+    #delete all items that the user was selling, if any 
     item = Item.query.filter_by(user_seller_name = user.username).all()
-    for i in items:
-     db.session.delete(i)
-    db.session.delete(user)
-    db.session.commit()
+    if item != None:
+     for i in items:
+      db.session.delete(i)
+     db.session.delete(user)
+     db.session.commit()
     flash("Your account has been deleted successfully")
    else:
     flash("Please enter the correct password")
