@@ -34,3 +34,8 @@ well as stabilizing the git repository / github
 - Team updates: Joe implemented the Create Account function
                 Justin implemented the Login, Search for item, and 
                 add item to store functions
+
+### 2022-5-03 at 16:30 - 17:45 (In class)
+- Attendees: Trung, Joe, Justin
+- Team updates: Joe worked on implementing the shopping cart for each user
+- Group progress: Worked on the readme.md file, shopping cart, as well as the logout function
