@@ -20,6 +20,8 @@ from flask_login import logout_user
 from flask_login import current_user
 from flask_login import login_required
 
+from app.user_logout import LogoutUser
+
 sessionCart = shoppingCart()
 
 #Justin
@@ -38,6 +40,13 @@ def login():
   else:
    flash('Username does not exist. Please enter an existing username')
  return render_template('login.html', login_form = login_form)
+
+#Trung
+@appObj.route('/logout') #as of right now only included on home.html
+def logout():
+    logout_user() #from flask_login
+    return redirect(url_for('home'))
+
 
 #Justin 
 @appObj.route('/home', methods = ['GET', 'POST'])
