@@ -14,16 +14,16 @@ to the website "ebay".
 - CSS
 - Bootstrap
 
-## List of features/functions + who implemented them
-- Login (Justin)
-- Logout (Trung)
-- Create account (Joe)
-- Delete account (Zach)
-- Add to cart (Joe)
-- Buy items (Joe)
-- Find items (Justin)
-- Add item to store (Justin)
-- See available items (Zach)
+## List of features/functions + who implemented them + when they were implemented
+- Login (Justin) (MILESTONE 2)
+- Logout (Trung) (MILESTONE 2)
+- Create account (Joe) (MILESTONE 2)
+- Delete account (Zach) (MILESTONE 2)
+- Add to cart (Joe) (MILESTONE 2)
+- Buy items (Joe) (MILESTONE 2)
+- Find items (Justin) (MILESTONE 2)
+- Add item to store (Justin) (MILESTONE 2)
+- See available items (Zach) (MILESTONE 2)
 - User ratings (Trung)
 - User profiles (Zach)
 - Add pictures for items (Trung)
