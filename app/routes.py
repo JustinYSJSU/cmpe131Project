@@ -99,13 +99,12 @@ def createAccount():
     user.payment_method_cvc=accountForm.paymentCVC.data
     db.session.add(user)
     db.session.commit()
-    flash("Your account has been created.")
+    print("user has been created")
     return redirect('/')
   return render_template('createAccount.html', accountForm = accountForm)
 
 #Zach / Justin
 @appObj.route('/deleteUser', methods = ['GET', 'POST'])
-@login_required
 def deleteAccount():
  account_form = DeleteUser()
  if account_form.validate_on_submit():
@@ -114,33 +113,27 @@ def deleteAccount():
    if user.check_password(account_form.password.data) == True:
     u = User.query.filter_by(username = account_form.username.data)
     #delete all items that the user was selling, if any 
-    items = Item.query.filter_by(user_seller_name = user.username).all()
-    if items != None:
+    item = Item.query.filter_by(user_seller_name = user.username).all()
+    if item != None:
      for i in items:
       db.session.delete(i)
      db.session.delete(user)
      db.session.commit()
     flash("Your account has been deleted successfully")
-    return redirect('/')
    else:
     flash("Please enter the correct password")
   else:
    flash("Please enter the correct username")
  return render_template('deleteUser.html', accountForm = account_form)
 
-
- 
 #Joe
 @appObj.route('/<itemID>', methods = ['GET', 'POST'])
-@login_required
 def landingPage(itemID):
   selectedItem = Item.query.filter_by(id = itemID).all()
   cartOption = addToCart()
   if cartOption.validate_on_submit():
-<<<<<<< HEAD
     sessionCart.addToCart(selectedItem[0].name, selectedItem[0].price)
     flash("Item has been added to the cart")
-=======
     #sessionCarts[current_user.id - 1].addToCart(selectedItem[0].name, selectedItem[0].price)
     C = ShoppingCart()
     C.buyerID = current_user.id
@@ -150,13 +143,13 @@ def landingPage(itemID):
     db.session.add(C)
     db.session.commit()
     print("item has been added to the cart")
->>>>>>> 79798afd121f146a84e71c45fdec4e813e169a4b
+    print("item has been added to the cart")
+
     return redirect('/cart')
   return render_template("landing.html", itemID = itemID, selectedItem = selectedItem[0], cartForm = cartOption)
 
 #Joe
 @appObj.route('/cart', methods = ['GET', 'POST'])
-@login_required
 def displayCart():
   checkout = checkoutForm()
   temp = sessionCart()
@@ -178,7 +171,6 @@ def displayCart():
 
 #Joe
 @appObj.route('/checkout')
-@login_required
 def checkout():
   orders = Order.query.filter_by(buyerID = current_user.id)
   return render_template("checkout.html", orders = orders)
