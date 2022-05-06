@@ -1,0 +1,8 @@
+site_name: SJSU CMPE131 
+site_url: httsp://example.com/
+nav:
+   - Home: index.md
+   - Installation/Running: installation.md
+   - Technologies Used: technologies.md
+   - Project Layout: layout.md
+   - Functions/Features: functions.md

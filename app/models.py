@@ -13,6 +13,7 @@ class User(UserMixin, db.Model):
  #number is 19 characters to account for spaces between every 4 numbers
  payment_method_number = db.Column(db.String(19))
  payment_method_cvc = db.Column(db.String(3))
+ #expdate is in the format mm/yy
  payment_method_expdate = db.Column(db.String(5))
  #sum of all review scores
  review_total_score = db.Column(db.Integer)
@@ -36,7 +37,7 @@ class Item(db.Model):
  price = db.Column(db.Float)
  image = db.Column(db.LargeBinary)
  description = db.Column(db.String(256))
-# user_seller_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+ #username is linked to item in order to display seller name
  user_seller_name = db.Column(db.String, db.ForeignKey('user.username'))
 
 class Order(db.Model):

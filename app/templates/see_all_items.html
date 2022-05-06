@@ -1,0 +1,15 @@
+<html>
+ <head>
+  <title> yaBe - All Items Available</title>
+ </head>
+  
+  <body>
+   {% for item in items %}
+    <p> {{item.name}} for ${{item.price}} </p>
+    <p> Item Description: {{item.description}} </p> 
+    <p> Seller: {{item.user_seller_name}} </p> <br>
+    <a href={{item.id}}> View Item </a>
+   {% endfor %}
+  </body>
+
+</html>
