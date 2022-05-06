@@ -10,7 +10,7 @@ from app.addToCart import addToCart, sessionCart, checkoutForm
 
 from app.delete_user import DeleteUser
 
-from app.addToCart import addToCart, shoppingCart, checkoutForm
+#from app.addToCart import addToCart, shoppingCart, checkoutForm
 
 from flask import render_template, flash, redirect, url_for
 from werkzeug.security import generate_password_hash
@@ -104,6 +104,12 @@ def createAccount():
   return render_template('createAccount.html', accountForm = accountForm)
 
 #Zach / Justin
+@appObj.route('/view_profile', methods = ['GET', 'POST'])
+def view_profile():
+ user = current_user
+ return render_template('user_profiles.html', user = user)
+
+#Zach / Justin
 @appObj.route('/deleteUser', methods = ['GET', 'POST'])
 def deleteAccount():
  account_form = DeleteUser()
@@ -132,13 +138,8 @@ def landingPage(itemID):
   selectedItem = Item.query.filter_by(id = itemID).all()
   cartOption = addToCart()
   if cartOption.validate_on_submit():
-
-    sessionCart.addToCart(selectedItem[0].name, selectedItem[0].price)
-    flash("Item has been added to the cart")
-    
-
-    
-    #sessionCarts[current_user.id - 1].addToCart(selectedItem[0].name, selectedItem[0].price)
+   # sessionCart.addToCart(selectedItem[0].name, selectedItem[0].price)
+   # sessionCarts[current_user.id - 1].addToCart(selectedItem[0].name, selectedItem[0].price)
     C = ShoppingCart()
     C.buyerID = current_user.id
     C.itemID = itemID
@@ -146,7 +147,7 @@ def landingPage(itemID):
     C.price = selectedItem[0].price
     db.session.add(C)
     db.session.commit()
-    
+    flash("Item has been added to the cart")
     return redirect('/cart')
   return render_template("landing.html", itemID = itemID, selectedItem = selectedItem[0], cartForm = cartOption)
 
