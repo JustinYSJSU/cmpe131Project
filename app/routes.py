@@ -20,7 +20,6 @@ from flask_login import logout_user
 from flask_login import current_user
 from flask_login import login_required
 
-from app.user_logout import LogoutUser
 
 sessionCart = shoppingCart()
 
