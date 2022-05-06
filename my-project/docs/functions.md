@@ -147,7 +147,7 @@ Returns
 ```
 
 ```
-def delete_account():
+def view_profile():
 
 Location
 -----
@@ -163,10 +163,100 @@ Parameters
 
 Function
 -----
-- Allows a user to delete their account
-- The user must enter their username and password. 
-- If a valid user is found, their account will be deleted. 
+- Allows the current user to see their account information 
+  (username, email, payment info)
 
 Returns
 -----
+- Returns the render_template function with the following parameters
+  - 'user_profiles.html', user
+  - 'user_profiles.html' is the .html file corresponding to displaying the user profile
+  - user is the current user
+```
 
+```
+def landingPage(itemId):
+
+Location
+-----
+- routes.py
+
+Author
+-----
+- Joe
+
+Parameters
+-----
+- itemID: The ID of the item being added to a users cart
+
+Function
+-----
+- Allows a user to add an item to their online cart
+
+Returns
+-----
+- Returns the render_template function with the following parameters
+  - 'landing.html', itemID, selectedItem[0], cartOption
+  - 'landing.html' is the .html file to display adding to cart 
+  - itemID is the id of the item being added
+  - selectedItem[0] is the specfiic item being selected from the list of possible items
+  - cartOption is the web form that allows users to submit their add to cart 
+  
+- After the user has added an item
+  - returns a redirect to ('/cart'), the page that displays the users cart 
+
+Location
+-----
+- routes.py
+
+Author
+-----
+- Joe
+
+Parameters
+-----
+- None
+
+Function
+-----
+- Allows a user to view their cart
+
+Returns
+-----
+- Returns the render_template function with the following parameters
+  - 'displayCart.html', temp, checkout
+  - 'displayCart.html' is the .html file to display viewing a cart
+  - temp is the current cart (the user's cart)
+  - checkout is the web form that allows users to view their cart
+  
+- After the user has finished viewing
+  - returns a redirect to ('/checkout'), the page that displays allows users to buy
+
+
+Location
+-----
+- routes.py
+
+Author
+-----
+- Joe
+
+Parameters
+-----
+- None
+
+Function
+-----
+- Allows a user to checkout and pay
+
+Returns
+-----
+- Returns the render_template function with the following parameters
+  - 'checkout.html', orders
+  - 'checkout.html' is the .html that corresponds to displaying the checkout
+  - orders is the order of the current user
+
+
+  
+- After the user has added an item
+  - returns a redirect to ('/cart'), the page that displays the users cart 
