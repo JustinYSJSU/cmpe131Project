@@ -46,6 +46,13 @@ class Order(db.Model):
   subtotal = db.Column(db.Float)
   buyerID = db.Column(db.Integer, db.ForeignKey('user.id'))
 
+class ShoppingCart(db.Model):
+  id = db.Column(db.Integer, primary_key = True)
+  name = db.Column(db.String(128))
+  price = db.Column(db.Float)
+  itemID = db.Column(db.Integer)
+  buyerID = db.Column(db.Integer, db.ForeignKey('user.id'))
+
 @login.user_loader
 def load_user(id):
  return User.query.get(int(id))
