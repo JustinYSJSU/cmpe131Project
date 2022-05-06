@@ -7,7 +7,7 @@
    <h1> Search results for "{{item_name}}" </h1>
    
    {% for item in items %}
-    <p> {{item.name}} for ${{item.price}} </p>
+    <p> {{item.name}} for {{"$%.2f"|format(item.price)}} </p>
     <p> Item Description: {{item.description}} </p> 
     <p> Seller: {{item.user_seller_name}} </p> <br>
     <a href={{item.id}}> View Item </a>

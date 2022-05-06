@@ -6,9 +6,9 @@
   <body>
    <h1> Shopping Cart </h1>
    {% for items in cart.cart %}
-   <p>{{items[0]}} {{items[1]}}</p>
+   <p>{{items[0]}} {{"$%.2f"|format(items[1])}}</p>
    {%endfor%}
-   {{cart.subtotal}}
+   {{"$%.2f"|format(cart.subtotal)}}
    <form action="" method="post" nonvalidate> 
     {{cartForm.hidden_tag()}}
     <p>
