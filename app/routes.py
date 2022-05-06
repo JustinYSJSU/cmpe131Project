@@ -5,6 +5,9 @@ from app.user_login import LoginUser
 from app.item_search import ItemSearch
 from app.item_sale import SellItem
 from app.createAccount import CreateUser
+
+from app.addToCart import addToCart, sessionCart, checkoutForm
+
 from app.delete_user import DeleteUser
 
 from app.addToCart import addToCart, shoppingCart, checkoutForm
@@ -13,14 +16,17 @@ from flask import render_template, flash, redirect, url_for
 from werkzeug.security import generate_password_hash
 
 from app import db
-from app.models import User, Item, Order
+from app.models import User, Item, Order, ShoppingCart
 
 from flask_login import login_user
 from flask_login import logout_user
 from flask_login import current_user
 from flask_login import login_required
 
-sessionCart = shoppingCart()
+'''sessionCarts = []
+for i in range(len(User.query.all())):
+  temp = shoppingCart()
+  sessionCarts.append(temp)'''
 
 #Justin
 @appObj.route('/', methods = ['GET', 'POST'])
@@ -31,7 +37,6 @@ def login():
   if user != None:
    if user.check_password(login_form.password.data) == True:
     login_user(user)
-    sessionCart.reset()
     return redirect(url_for('home'))
    else:
     flash('Incorrect password. Please try again.')
@@ -127,7 +132,14 @@ def landingPage(itemID):
   selectedItem = Item.query.filter_by(id = itemID).all()
   cartOption = addToCart()
   if cartOption.validate_on_submit():
-    sessionCart.addToCart(selectedItem[0].name, selectedItem[0].price)
+    #sessionCarts[current_user.id - 1].addToCart(selectedItem[0].name, selectedItem[0].price)
+    C = ShoppingCart()
+    C.buyerID = current_user.id
+    C.itemID = itemID
+    C.name = selectedItem[0].name
+    C.price = selectedItem[0].price
+    db.session.add(C)
+    db.session.commit()
     print("item has been added to the cart")
     return redirect('/cart')
   return render_template("landing.html", itemID = itemID, selectedItem = selectedItem[0], cartForm = cartOption)
@@ -136,15 +148,22 @@ def landingPage(itemID):
 @appObj.route('/cart', methods = ['GET', 'POST'])
 def displayCart():
   checkout = checkoutForm()
+  temp = sessionCart()
+  grandCart = ShoppingCart.query.all()
+  for i in grandCart:
+    if(i.buyerID == current_user.id):
+      temp.addToCart(i.name, i.price)
   if checkout.validate_on_submit():
     buyer = current_user
     s = ", "
-    s = s.join(sessionCart.cartNames)
-    O = Order(itemList = s, subtotal = sessionCart.subtotal, buyerID = buyer.id)
+    s = s.join(temp.cartNames)
+    O = Order(itemList = s, subtotal = temp.subtotal, buyerID = buyer.id)
+    db.session.query(ShoppingCart).filter(ShoppingCart.buyerID == current_user.id).delete()
     db.session.add(O)
     db.session.commit()
+
     return redirect('/checkout')
-  return render_template("displayCart.html", cart = sessionCart, cartForm = checkout)
+  return render_template("displayCart.html", cart = temp, cartForm = checkout)
 
 #Joe
 @appObj.route('/checkout')
