@@ -39,3 +39,11 @@ well as stabilizing the git repository / github
 - Attendees: Trung, Joe, Justin
 - Team updates: Joe worked on implementing the shopping cart for each user
 - Group progress: Worked on the readme.md file, shopping cart, as well as the logout function
+
+### 2022-5-05 at 16:30 - 17:45 (In class)
+- Attendees: Trung, Joe, Justin
+- Team updates: Joe worked on implementing the shopping cart for each user
+                Justin worked on the mkdocs documentation website and visibility for user profiles
+                Trung worked on the logout and item image functions
+- Group progress: Completed the shopping cart function. Added function section to mkdocs documentation and added 
+                  visibility for user profiles. Completed the logout function
