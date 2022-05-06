@@ -137,10 +137,10 @@ def landingPage(itemID):
   selectedItem = Item.query.filter_by(id = itemID).all()
   cartOption = addToCart()
   if cartOption.validate_on_submit():
-<<<<<<< HEAD
+
     sessionCart.addToCart(selectedItem[0].name, selectedItem[0].price)
     flash("Item has been added to the cart")
-=======
+
     #sessionCarts[current_user.id - 1].addToCart(selectedItem[0].name, selectedItem[0].price)
     C = ShoppingCart()
     C.buyerID = current_user.id
@@ -150,7 +150,7 @@ def landingPage(itemID):
     db.session.add(C)
     db.session.commit()
     print("item has been added to the cart")
->>>>>>> 79798afd121f146a84e71c45fdec4e813e169a4b
+
     return redirect('/cart')
   return render_template("landing.html", itemID = itemID, selectedItem = selectedItem[0], cartForm = cartOption)
 
