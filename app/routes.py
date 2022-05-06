@@ -10,7 +10,7 @@ from app.addToCart import addToCart, sessionCart, checkoutForm
 
 from app.delete_user import DeleteUser
 
-#from app.addToCart import addToCart, shoppingCart, checkoutForm
+from app.addToCart import addToCart, sessionCart, checkoutForm
 
 from flask import render_template, flash, redirect, url_for
 from werkzeug.security import generate_password_hash
@@ -23,10 +23,7 @@ from flask_login import logout_user
 from flask_login import current_user
 from flask_login import login_required
 
-'''sessionCarts = []
-for i in range(len(User.query.all())):
-  temp = shoppingCart()
-  sessionCarts.append(temp)'''
+
 
 #Justin
 @appObj.route('/', methods = ['GET', 'POST'])
@@ -99,7 +96,7 @@ def createAccount():
     user.payment_method_cvc=accountForm.paymentCVC.data
     db.session.add(user)
     db.session.commit()
-    print("user has been created")
+    #take the user back to login screen so they can log in with their new account
     return redirect('/')
   return render_template('createAccount.html', accountForm = accountForm)
 
@@ -138,9 +135,8 @@ def landingPage(itemID):
   selectedItem = Item.query.filter_by(id = itemID).all()
   cartOption = addToCart()
   if cartOption.validate_on_submit():
-   # sessionCart.addToCart(selectedItem[0].name, selectedItem[0].price)
-   # sessionCarts[current_user.id - 1].addToCart(selectedItem[0].name, selectedItem[0].price)
     C = ShoppingCart()
+    #item will be stored in shopping cart database where it can be reference by the buyer's id
     C.buyerID = current_user.id
     C.itemID = itemID
     C.name = selectedItem[0].name
@@ -156,14 +152,17 @@ def landingPage(itemID):
 def displayCart():
   checkout = checkoutForm()
   temp = sessionCart()
+  #get a list of every item in the shopping cart database belonging to the current user
   grandCart = ShoppingCart.query.all()
   for i in grandCart:
     if(i.buyerID == current_user.id):
+      #add these items to our local shopping cart class for easier management
       temp.addToCart(i.name, i.price)
   if checkout.validate_on_submit():
     buyer = current_user
     s = ", "
     s = s.join(temp.cartNames)
+    #store the order in a database
     O = Order(itemList = s, subtotal = temp.subtotal, buyerID = buyer.id)
     db.session.query(ShoppingCart).filter(ShoppingCart.buyerID == current_user.id).delete()
     db.session.add(O)
