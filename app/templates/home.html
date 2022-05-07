@@ -6,6 +6,14 @@
 
   
  <body>
+  
+  <div>
+    {% if current_user.is_anonymous %}
+    {% else %}
+        <a href="{{ url_for('logout') }}"> Logout </a>
+    {% endif %}
+  </div>
+
   <h1> Welcome (back) to yaBe! </h1>
   <p> yaBe is a totally original online store </p>
    
