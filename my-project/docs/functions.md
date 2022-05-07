@@ -30,7 +30,7 @@ Returns
 ```
 
 ```
-def login():
+def logout():
 
 Location
 -----
