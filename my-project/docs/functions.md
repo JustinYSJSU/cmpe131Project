@@ -29,6 +29,32 @@ Returns
     user in (see user_login.py)
 ```
 
+```
+def login():
+
+Location
+-----
+- routes.py
+
+Author
+-----
+- Trung
+
+Parameters
+-----
+- None
+
+Function
+-----
+- Logs the current user out of their account and returns them to the home page
+- Uses the logout_user fucntion from flask 
+
+Returns
+-----
+- Returns 'redirect(url_for('home')) which takes 
+  the user back to the home page after being logged out
+  
+```
 
 ```
 def home():
