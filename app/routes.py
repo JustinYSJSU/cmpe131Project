@@ -1,3 +1,8 @@
+from crypt import methods
+from wsgiref.util import request_uri
+from bleach import ALLOWED_ATTRIBUTES
+
+from requests import request
 from app import appObj
 from app.user_login import LoginUser
 
@@ -14,6 +19,7 @@ from app.addToCart import addToCart, sessionCart, checkoutForm
 
 from flask import render_template, flash, redirect, url_for
 from werkzeug.security import generate_password_hash
+from werkzeug.utils import secure_filename
 
 from app import db
 from app.models import User, Item, Order, ShoppingCart
@@ -22,6 +28,10 @@ from flask_login import login_user
 from flask_login import logout_user
 from flask_login import current_user
 from flask_login import login_required
+
+import urllib.request
+
+import os
 
 
 
@@ -86,6 +96,33 @@ def sell_item():
   else:
    flash('Item price must be above $0.00. Please try again')
  return render_template('sell_item.html', sell_form = sell_form)
+
+#Trung
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+def allowed_file(filename):
+  return '.' in filename and filename.rsplit('.', 1).lower() in ALLOWED_EXTENSIONS
+
+@appObj.route('/upload_item_image')
+def upload_item_image():
+  return render_template('upload_item_image.html')
+
+@appObj.route('/upload_item_image', methods = ['POST'])
+def upload_item_image_():
+  if 'file' not in request.files:
+    flash('no file part')
+    return redirect('/upload_item_image')
+  file = request.files['file']
+  if file.filename == '':
+    flash('no image selected to upload')
+    return redirect('/upload_item_image')
+  if file and allowed_file(file.filename):
+    filename = secure_filename(file.filename)
+    file.save(os.path.join(appObj.config['UPLOAD_FOLDER'], filename))
+    flash('image uploaded successfully')
+    return render_template('upload_item_image.html', filename = filename)
+  else:
+    flash('file must be png, jpg, jpeg, or gif')
+    return redirect('/upload_item_image')
 
 #Joe
 @appObj.route('/createAccount', methods = ['GET', 'POST'])
