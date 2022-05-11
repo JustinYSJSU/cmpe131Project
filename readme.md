@@ -25,7 +25,7 @@ to the website "ebay".
 - Add item to store (Justin) (MILESTONE 2)
 - See available items (Zach) (MILESTONE 2)
 - User ratings (Trung)
-- User profiles (Zach)
+- User profiles (Zach) (MILESTONE 2)
 - Add pictures for items (Trung)
 
 ## How to run
