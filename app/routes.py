@@ -57,7 +57,6 @@ def logout():
     logout_user() #from flask_login
     return redirect(url_for('home'))
 
-
 #Justin 
 @appObj.route('/home', methods = ['GET', 'POST'])
 @login_required
@@ -75,6 +74,13 @@ def home():
    flash('Item was not found. Please try again')
 
  return render_template('home.html', search_form = search_form)
+
+#Zach / Justin
+@appObj.route('/see_all_items', methods =  ['GET', 'POST'])
+@login_required
+def see_all_items():
+ items = Item.query.all()
+ return render_template('see_all_items.html', items = items)
 
 #Justin
 @appObj.route('/sell_item', methods = ['GET', 'POST'])
