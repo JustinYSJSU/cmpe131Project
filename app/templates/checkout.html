@@ -7,6 +7,8 @@
         {%for item in orders%}
         {{item.itemList}} {{"$%.2f"|format(item.subtotal)}}
         {%endfor%}
-        <a href = "home"> Continue Shopping </a>
+        <div>
+            <a href = "home"> Continue Shopping </a>
+        </div>
     </body>
 </html>

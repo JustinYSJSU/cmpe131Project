@@ -166,8 +166,8 @@ def deleteAccount():
    if user.check_password(account_form.password.data) == True:
     u = User.query.filter_by(username = account_form.username.data)
     #delete all items that the user was selling, if any 
-    item = Item.query.filter_by(user_seller_name = user.username).all()
-    if item != None:
+    items = Item.query.filter_by(user_seller_name = user.username).all()
+    if items != None:
      for i in items:
       db.session.delete(i)
      db.session.delete(user)
