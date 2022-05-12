@@ -66,11 +66,13 @@
 
 <br>
 
-   {% for item in items %}
+    {% for item in items %}
+    <p><b> ------------------------------- </b></p>
     <p> {{item.name}} for {{"$%.2f"|format(item.price)}} </p>
     <p> Item Description: {{item.description}} </p> 
     <p> Seller: {{item.user_seller_name}} </p> 
-    <a href={{item.id}}> View Item </a>
+    <p> <a href={{item.id}}> View Item </a> </p>
+    <p><b> ------------------------------- </b></p>
     <br>
    {% endfor %}
   </body>
