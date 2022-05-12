@@ -2,7 +2,7 @@ from app import appObj
 from app.user_login import LoginUser
 
 
-from app.item_search import ItemSearch
+from app.item_search import ItemSearch, SellerSearch
 from app.item_sale import SellItem
 from app.createAccount import CreateUser
 
@@ -55,7 +55,7 @@ def logout():
 #and put items up for sale
 def home():
  search_form = ItemSearch()
-  
+ search_seller = SellerSearch()
  if search_form.validate_on_submit(): 
   item_list = Item.query.filter_by(name = search_form.item_name.data).all()
   if len(item_list) != 0:
@@ -63,8 +63,13 @@ def home():
           items = item_list, item_name = search_form.item_name.data)   
   else:
    flash('Item was not found. Please try again')
+ if search_seller.validate_on_submit(): 
+  item_list = Item.query.filter_by(user_seller_name = search_seller.seller_name.data).all()
+  if len(item_list) != 0:
+   return render_template('display_item.html',
+          items = item_list, item_name = search_seller.seller_name.data)   
 
- return render_template('home.html', search_form = search_form)
+ return render_template('home.html', search_form = search_form, search_seller = search_seller)
 
 #Justin
 @appObj.route('/sell_item', methods = ['GET', 'POST'])
@@ -125,7 +130,7 @@ def deleteAccount():
     #delete all items that the user was selling, if any 
     item = Item.query.filter_by(user_seller_name = user.username).all()
     if item != None:
-     for i in items:
+     for i in item:
       db.session.delete(i)
      db.session.delete(user)
      db.session.commit()
@@ -183,3 +188,8 @@ def displayCart():
 def checkout():
   orders = Order.query.filter_by(buyerID = current_user.id)
   return render_template("checkout.html", orders = orders)
+
+#Joe
+@appObj.route('/sellerItems')
+def viewSellerItems():
+  pass
