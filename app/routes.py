@@ -152,12 +152,14 @@ def createAccount():
 
 #Zach / Justin
 @appObj.route('/view_profile', methods = ['GET', 'POST'])
+@login_required
 def view_profile():
  user = current_user
  return render_template('user_profiles.html', user = user)
 
 #Zach / Justin
 @appObj.route('/deleteUser', methods = ['GET', 'POST'])
+@login_required
 def deleteAccount():
  account_form = DeleteUser()
  if account_form.validate_on_submit():
@@ -200,6 +202,7 @@ def landingPage(itemID):
 
 #Joe
 @appObj.route('/cart', methods = ['GET', 'POST'])
+@login_required
 def displayCart():
   checkout = checkoutForm()
   temp = sessionCart()
@@ -224,6 +227,7 @@ def displayCart():
 
 #Joe
 @appObj.route('/checkout')
+@login_required
 def checkout():
   orders = Order.query.filter_by(buyerID = current_user.id)
   return render_template("checkout.html", orders = orders)
