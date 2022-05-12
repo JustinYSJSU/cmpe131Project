@@ -173,6 +173,7 @@ def deleteAccount():
      db.session.delete(user)
      db.session.commit()
     flash("Your account has been deleted successfully")
+    return redirect('/') #after deleting account, redirect to login page
    else:
     flash("Please enter the correct password")
   else:
