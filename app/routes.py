@@ -226,7 +226,7 @@ def displayCart():
     db.session.query(ShoppingCart).filter(ShoppingCart.buyerID == current_user.id).delete()
     db.session.add(O)
     db.session.commit()
-
+    flash("Thank you for your purchase!")
     return redirect('/checkout')
   return render_template("displayCart.html", cart = temp, cartForm = checkout)
 
