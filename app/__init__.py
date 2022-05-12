@@ -13,6 +13,11 @@ appObj.config.from_mapping(
    )
 appObj.config['TESTING'] = False
 
+appObj.secret_key = "you-will-never-guess"
+UPLOAD_FOLDER = './static/uploads/'
+appObj.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+appObj.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+
 db = SQLAlchemy(appObj)
 login = LoginManager(appObj)
 login.login_view = 'login'
