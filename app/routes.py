@@ -1,6 +1,6 @@
 from crypt import methods
 from wsgiref.util import request_uri
-from bleach import ALLOWED_ATTRIBUTES
+#from bleach import ALLOWED_ATTRIBUTES
 
 from requests import request
 from app import appObj
