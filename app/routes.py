@@ -71,13 +71,13 @@ def home():
    return render_template('display_item.html',
           items = item_list, item_name = search_form.item_name.data)   
   else:
-   flash('Item was not found. Please try again')
+   flash('Your search did not yield any results. Please try again')
+
  if search_seller.validate_on_submit(): 
   item_list = Item.query.filter_by(user_seller_name = search_seller.seller_name.data).all()
   if len(item_list) != 0:
    return render_template('display_item.html',
           items = item_list, item_name = search_seller.seller_name.data)   
-
  return render_template('home.html', search_form = search_form, search_seller = search_seller)
 
 #Zach / Justin
