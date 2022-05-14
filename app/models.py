@@ -11,10 +11,10 @@ class User(UserMixin, db.Model):
  address = db.Column(db.String(128))
  payment_method_company = db.Column(db.String(10))
  #number is 19 characters to account for spaces between every 4 numbers
- payment_method_number = db.Column(db.String(19))
- payment_method_cvc = db.Column(db.String(3))
+ payment_method_number = db.Column(db.Integer)
+ payment_method_cvc = db.Column(db.Integer)
  #expdate is in the format mm/yy
- payment_method_expdate = db.Column(db.String(5))
+ payment_method_expdate = db.Column(db.Integer)
  #sum of all review scores
  review_total_score = db.Column(db.Integer)
  #number of total reviews
