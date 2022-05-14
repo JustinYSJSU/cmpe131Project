@@ -47,3 +47,10 @@ well as stabilizing the git repository / github
                 Trung worked on the logout and item image functions
 - Group progress: Completed the shopping cart function. Added function section to mkdocs documentation and added 
                   visibility for user profiles. Completed the logout function
+
+### 2022-5-10 at 16:30 - 17:45 (In class)
+- Attendees: Trung, Joe, Justin
+- Team updates: Joe worked on testing the site for the presentation
+                Justin worked on css and bootstrap for the site. 
+                Trung worked on the review and item image functions
+- Group progress: Tested the site for the presentation and started css/bootstrap.
