@@ -10,10 +10,7 @@
     <meta name="generator" content="Hugo 0.84.0">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <body>
-    <body>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="bootstrap" viewBox="0 0 118 94">
@@ -51,11 +48,11 @@
    {% endif %}
   {% endwith %}
 
-  <div class="b-example-divider" style="border-color:black;"></div>
+  <div class="b-example-divide style="border-color:black;"></div>
 
   
-  <header class="p-3 mb-3 border-bottom">
-    <div class="container p-3 my-3">
+  <header class="p-3 mb-3 border-bottom" style= "background: #c6c6c6">
+    <div class="container p-3 mb-3" style="background: #c6c6c6"">
      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"</div>
         
         <a href="/home" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
@@ -88,15 +85,15 @@
        </div>  
      </div>
     </div>
-  <br>
-
+  
   <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start" </div>
    <a class="btn btn-outline-danger mr-2" href="{{url_for('logout')}}" role="button"> Logout </a>
   
   </header>
 
-<h3> <b> <u> About yaBe </b> </u> </h3>
-<p> yaBe is a toally original online store that lets you sell your own
+<div class="p-3 mb-2">
+ <h3> <b> <u> About yaBe </b> </u> </h3>
+ <p> yaBe is a toally original online store that lets you sell your own
     items and buy items from people around the world.
 </p>
 
@@ -108,16 +105,15 @@
     your account, visit the Profile page,
 </p>
 
+</div>
 </main>
 
 
     <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-    
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+   
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+       
   </body>
 </html>
