@@ -13,6 +13,7 @@ to the website "ebay".
 - HTML
 - CSS
 - Bootstrap (5.0.2)
+- bleach (for images)
 
 ## List of features/functions + who implemented them + when they were implemented
 - Login (Justin) (MILESTONE 2)
@@ -29,7 +30,7 @@ to the website "ebay".
 - Add pictures for items (Trung)
 
 ## How to run
-- Make sure you have Python, SQAlchemy, Flask, and git installed on your computer
+- Make sure you have Python, SQAlchemy, Flask, bleach, and git installed on your computer
 - To install these technologies, use the following commands on the Linux terminal
 ```
 sudo apt-get install python3 (do this first)
@@ -38,6 +39,7 @@ pip3 install flask-login
 pip3 install flask-sqlalchemy
 pip3 install flask-wtf
 pip3 install git
+pip3 install bleach
 ```
 - Clone the project repository using the following command
 ```
