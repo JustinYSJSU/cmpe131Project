@@ -12,7 +12,7 @@ to the website "ebay".
 - Python (3.8.10)
 - HTML
 - CSS
-- Bootstrap
+- Bootstrap (5.0.2)
 
 ## List of features/functions + who implemented them + when they were implemented
 - Login (Justin) (MILESTONE 2)
