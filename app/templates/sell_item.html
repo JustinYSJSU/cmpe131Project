@@ -71,7 +71,7 @@
   <br>
   <h2><b><u> yaBe - Sell your item </b></u></h2>
   <br>
-  <form method= "POST", action="">
+  <form method= "POST", action="", enctype="multipart/form-data">
    {{sell_form.csrf_token}}
    {{sell_form.item_sell_name.label}}
    {{sell_form.item_sell_name(size = 32)}} <br>
@@ -79,6 +79,10 @@
    {{sell_form.item_sell_price}} <br>
    {{sell_form.item_sell_desc.label}}
    {{sell_form.item_sell_desc(size = 32)}} <br>
+
+   {{sell_form.hidden_tag()}}
+   {{sell_form.file()}}
+   
    {{sell_form.sell}}
   </form>
 

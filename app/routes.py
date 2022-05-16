@@ -87,6 +87,12 @@ def see_all_items():
  items = Item.query.all()
  return render_template('see_all_items.html', items = items)
 
+#Trung
+appObj.config['SECRET_KEY'] = 'you-will-never-guess'
+appObj.config['UPLOAD_FOLDER'] = 'static/files'
+# appObj.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+# appObj.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+
 #Justin
 @appObj.route('/sell_item', methods = ['GET', 'POST'])
 @login_required
@@ -96,9 +102,16 @@ def sell_item():
   if sell_form.item_sell_price.data > 0:
    #Need to add image in milestone 3
    seller = current_user
+
+   '''IMAGE HANDLING'''
+   file = sell_form.file.data #grab the file
+   file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),
+            appObj.config['UPLOAD_FOLDER'],
+            secure_filename(file.filename))) #save the file
+
    item = Item(name = sell_form.item_sell_name.data, 
                price = sell_form.item_sell_price.data, 
-               image = sell_form.item_image.data,
+               image = sell_form.file,
                description = sell_form.item_sell_desc.data, 
                user_seller_name = seller.username)
    db.session.add(item)
@@ -107,33 +120,6 @@ def sell_item():
   else:
    flash('Item price must be above $0.00. Please try again')
  return render_template('sell_item.html', sell_form = sell_form)
-
-#Trung
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
-def allowed_file(filename):
-  return '.' in filename and filename.rsplit('.', 1).lower() in ALLOWED_EXTENSIONS
-
-@appObj.route('/upload_item_image')
-def upload_item_image():
-  return render_template('upload_item_image.html')
-
-@appObj.route('/upload_item_image', methods = ['POST'])
-def upload_item_image_():
-  if 'file' not in request.files:
-    flash('no file part')
-    return redirect('/upload_item_image')
-  file = request.files['file']
-  if file.filename == '':
-    flash('no image selected to upload')
-    return redirect('/upload_item_image')
-  if file and allowed_file(file.filename):
-    filename = secure_filename(file.filename)
-    file.save(os.path.join(appObj.config['UPLOAD_FOLDER'], filename))
-    flash('image uploaded successfully')
-    return render_template('upload_item_image.html', filename = filename)
-  else:
-    flash('file must be png, jpg, jpeg, or gif')
-    return redirect('/upload_item_image')
 
 #Joe
 @appObj.route('/createAccount', methods = ['GET', 'POST'])
