@@ -65,19 +65,26 @@ def logout():
 def home():
  search_form = ItemSearch()
  search_seller = SellerSearch()
+ temp = [0,0]
  if search_form.validate_on_submit(): 
+  temp[0] = 0
   item_list = Item.query.filter_by(name = search_form.item_name.data).all()
   if len(item_list) != 0:
    return render_template('display_item.html',
           items = item_list, item_name = search_form.item_name.data)   
   else:
-   flash('Your search did not yield any results. Please try again')
+   temp[0] = 1
 
  if search_seller.validate_on_submit(): 
+  temp[1] = 0
   item_list = Item.query.filter_by(user_seller_name = search_seller.seller_name.data).all()
   if len(item_list) != 0:
    return render_template('display_item.html',
-          items = item_list, item_name = search_seller.seller_name.data)   
+          items = item_list, item_name = search_seller.seller_name.data)
+  else:
+    temp[1] = 1
+ if(temp[0] & temp[1]):
+   flash('your search did not yield any results. Please try again')
  return render_template('home.html', search_form = search_form, search_seller = search_seller)
 
 #Zach / Justin
