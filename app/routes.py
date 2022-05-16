@@ -145,6 +145,7 @@ def createAccount():
     db.session.add(user)
     db.session.commit()
     #take the user back to login screen so they can log in with their new account
+    flash('Your account has been created successfully')
     return redirect('/')
   return render_template('createAccount.html', accountForm = accountForm)
 
@@ -217,16 +218,22 @@ def displayCart():
       #add these items to our local shopping cart class for easier management
       temp.addToCart(i.name, i.price)
   if checkout.validate_on_submit():
-    buyer = current_user
-    s = ", "
-    s = s.join(temp.cartNames)
-    #store the order in a database
-    O = Order(itemList = s, subtotal = temp.subtotal, buyerID = buyer.id)
-    db.session.query(ShoppingCart).filter(ShoppingCart.buyerID == current_user.id).delete()
-    db.session.add(O)
-    db.session.commit()
-    flash("Thank you for your purchase!")
-    return redirect('/checkout')
+    for i in grandCart:
+      if(i.buyerID == current_user.id):
+        db.session.query(Item).filter(Item.id == i.itemID).delete()
+    if(temp.subtotal > 0):
+      buyer = current_user
+      s = ", "
+      s = s.join(temp.cartNames)
+      #store the order in a database
+      O = Order(itemList = s, subtotal = temp.subtotal, buyerID = buyer.id)
+      db.session.query(ShoppingCart).filter(ShoppingCart.buyerID == current_user.id).delete()
+      db.session.add(O)
+      db.session.commit()
+      flash("Thank you for your purchase!")
+      return redirect('/checkout')
+    else:
+      flash("Your shopping cart appears to be empty")
   return render_template("displayCart.html", cart = temp, cartForm = checkout)
 
 #Joe
