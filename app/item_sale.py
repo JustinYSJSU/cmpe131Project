@@ -8,5 +8,5 @@ class SellItem(FlaskForm):
  item_sell_price = DecimalField("Enter item price",render_kw={"placeholder": "Price, must be above $0"}, validators =[DataRequired(), NumberRange(min=0)], places = 2)
  item_sell_desc = StringField("Describe the item", render_kw={"placeholder": "Description, max 128 characters"}, validators = [DataRequired(), Length(max=128)])
 
- file = FileField('Upload Image', validators = [InputRequired()])
+ file = FileField('Upload Image',render_kw={"placeholder": "Upload an image of your item here."}, validators = [InputRequired()])
  sell = SubmitField('Sell')

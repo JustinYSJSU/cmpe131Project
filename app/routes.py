@@ -99,8 +99,6 @@ appObj.config['UPLOAD_FOLDER'] = 'static/files'
 def sell_item():
  sell_form = SellItem()
  if sell_form.validate_on_submit():
-  if sell_form.item_sell_price.data > 0:
-   #Need to add image in milestone 3
    seller = current_user
 
    '''IMAGE HANDLING'''
@@ -118,8 +116,7 @@ def sell_item():
    db.session.add(item)
    db.session.commit()
    flash("Thank you! Item has been put out for sale")
-  else:
-   flash('Item price must be above $0.00. Please try again')
+   return redirect('/home')
  return render_template('sell_item.html', sell_form = sell_form)
 
 #Joe
@@ -184,26 +181,31 @@ def deleteAccount():
 #Joe / Trung
 @appObj.route('/<itemID>', methods = ['GET', 'POST'])
 def landingPage(itemID):
-  selectedItem = Item.query.filter_by(id = itemID).all()
+  selectedItem = Item.query.filter_by(id = itemID).first()
+  user = current_user
   # image_abs_path = '../static/files/amd-pc-1-tech-pc-7-techpc7.in_.jpg' #this works--it wants a relative path
   # image_abs_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), #it does not want an absolute path
   #           appObj.config['UPLOAD_FOLDER'],
   #           selectedItem[0].image) #absolute path of image so it can be used on HTML
-  image_rel_path = '../static/files/' + selectedItem[0].image #concatenate for relative path
+  image_rel_path = '../static/files/' + selectedItem.image #concatenate for relative path
   print(image_rel_path) #DEBUGGING
   cartOption = addToCart()
-  if cartOption.validate_on_submit():
-    C = ShoppingCart()
-    #item will be stored in shopping cart database where it can be reference by the buyer's id
-    C.buyerID = current_user.id
-    C.itemID = itemID
-    C.name = selectedItem[0].name
-    C.price = selectedItem[0].price
-    db.session.add(C)
-    db.session.commit()
-    flash("Item has been added to the cart")
-    return redirect('/cart')
-  return render_template("landing.html", itemID = itemID, selectedItem = selectedItem[0], cartForm = cartOption, image_rel_path = image_rel_path)
+  if cartOption.validate_on_submit() and selectedItem:
+    #users cannot buy items that they themselves are selling
+    if selectedItem.user_seller_name == user.username:
+     flash('You are selling this item, and therefore cannot buy it')
+    else:
+     C = ShoppingCart()
+     #item will be stored in shopping cart database where it can be reference by the buyer's id
+     C.buyerID = current_user.id
+     C.itemID = itemID
+     C.name = selectedItem.name
+     C.price = selectedItem.price
+     db.session.add(C)
+     db.session.commit()
+     flash("Item has been added to the cart")
+     return redirect('/cart')
+  return render_template("landing.html", itemID = itemID, selectedItem = selectedItem, cartForm = cartOption, image_rel_path = image_rel_path)
 
 #Joe
 @appObj.route('/cart', methods = ['GET', 'POST'])

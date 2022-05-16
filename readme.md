@@ -25,9 +25,9 @@ to the website "ebay".
 - Find items (Justin) (MILESTONE 2)
 - Add item to store (Justin) (MILESTONE 2)
 - See available items (Zach) (MILESTONE 2)
-- User ratings (Trung)
+- User ratings (Trung) (MILESTONE 3)
 - User profiles (Zach) (MILESTONE 2)
-- Add pictures for items (Trung)
+- Add pictures for items (Trung) (MILESTONE 3)
 
 ## How to run
 - Make sure you have Python, SQAlchemy, Flask, bleach, and git installed on your computer
