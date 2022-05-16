@@ -105,13 +105,14 @@ def sell_item():
 
    '''IMAGE HANDLING'''
    file = sell_form.file.data #grab the file
+   sec_filename = secure_filename(file.filename) #name of image file submitted
    file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),
             appObj.config['UPLOAD_FOLDER'],
-            secure_filename(file.filename))) #save the file
+            sec_filename)) #save the file
 
    item = Item(name = sell_form.item_sell_name.data, 
                price = sell_form.item_sell_price.data, 
-               image = sell_form.file,
+               image = sec_filename, #storing the name of the image submitted
                description = sell_form.item_sell_desc.data, 
                user_seller_name = seller.username)
    db.session.add(item)
@@ -135,6 +136,12 @@ def createAccount():
     user.payment_method_number=accountForm.paymentNumber.data
     user.payment_method_expdate=accountForm.paymentExpDate.data
     user.payment_method_cvc=accountForm.paymentCVC.data
+
+    #assuming a new account will have no ratings
+    user.num_positive_reviews=0
+    user.num_neutral_reviews=0
+    user.num_negative_reviews=0
+
     db.session.add(user)
     db.session.commit()
     #take the user back to login screen so they can log in with their new account
@@ -177,6 +184,10 @@ def deleteAccount():
 @appObj.route('/<itemID>', methods = ['GET', 'POST'])
 def landingPage(itemID):
   selectedItem = Item.query.filter_by(id = itemID).all()
+  image_abs_path = os.path.join(os.path.abspath(os.path.dirname(__file__)),
+            appObj.config['UPLOAD_FOLDER'],
+            selectedItem[0].image) #absolute path of image so it can be used on HTML
+  print(image_abs_path) #DEBUGGING
   cartOption = addToCart()
   if cartOption.validate_on_submit():
     C = ShoppingCart()
@@ -189,7 +200,7 @@ def landingPage(itemID):
     db.session.commit()
     flash("Item has been added to the cart")
     return redirect('/cart')
-  return render_template("landing.html", itemID = itemID, selectedItem = selectedItem[0], cartForm = cartOption)
+  return render_template("landing.html", itemID = itemID, selectedItem = selectedItem[0], cartForm = cartOption, image_abs_path = image_abs_path)
 
 #Joe
 @appObj.route('/cart', methods = ['GET', 'POST'])
