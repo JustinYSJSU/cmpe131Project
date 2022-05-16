@@ -87,7 +87,13 @@ def see_all_items():
  items = Item.query.all()
  return render_template('see_all_items.html', items = items)
 
-#Justin
+#Trung
+appObj.config['SECRET_KEY'] = 'you-will-never-guess'
+appObj.config['UPLOAD_FOLDER'] = 'static/files' 
+# appObj.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+# appObj.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+
+#Justin / Trung
 @appObj.route('/sell_item', methods = ['GET', 'POST'])
 @login_required
 def sell_item():
@@ -96,9 +102,17 @@ def sell_item():
   if sell_form.item_sell_price.data > 0:
    #Need to add image in milestone 3
    seller = current_user
+
+   '''IMAGE HANDLING'''
+   file = sell_form.file.data #grab the file
+   sec_filename = secure_filename(file.filename) #name of image file submitted
+   file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),
+            appObj.config['UPLOAD_FOLDER'],
+            sec_filename)) #save the file
+
    item = Item(name = sell_form.item_sell_name.data, 
                price = sell_form.item_sell_price.data, 
-               image = sell_form.item_image.data,
+               image = sec_filename, #storing the name of the image submitted
                description = sell_form.item_sell_desc.data, 
                user_seller_name = seller.username)
    db.session.add(item)
@@ -107,33 +121,6 @@ def sell_item():
   else:
    flash('Item price must be above $0.00. Please try again')
  return render_template('sell_item.html', sell_form = sell_form)
-
-#Trung
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
-def allowed_file(filename):
-  return '.' in filename and filename.rsplit('.', 1).lower() in ALLOWED_EXTENSIONS
-
-@appObj.route('/upload_item_image')
-def upload_item_image():
-  return render_template('upload_item_image.html')
-
-@appObj.route('/upload_item_image', methods = ['POST'])
-def upload_item_image_():
-  if 'file' not in request.files:
-    flash('no file part')
-    return redirect('/upload_item_image')
-  file = request.files['file']
-  if file.filename == '':
-    flash('no image selected to upload')
-    return redirect('/upload_item_image')
-  if file and allowed_file(file.filename):
-    filename = secure_filename(file.filename)
-    file.save(os.path.join(appObj.config['UPLOAD_FOLDER'], filename))
-    flash('image uploaded successfully')
-    return render_template('upload_item_image.html', filename = filename)
-  else:
-    flash('file must be png, jpg, jpeg, or gif')
-    return redirect('/upload_item_image')
 
 #Joe
 @appObj.route('/createAccount', methods = ['GET', 'POST'])
@@ -149,6 +136,12 @@ def createAccount():
     user.payment_method_number=accountForm.paymentNumber.data
     user.payment_method_expdate=accountForm.paymentExpDate.data
     user.payment_method_cvc=accountForm.paymentCVC.data
+
+    #assuming a new account will have no ratings
+    user.num_positive_reviews=0
+    user.num_neutral_reviews=0
+    user.num_negative_reviews=0
+
     db.session.add(user)
     db.session.commit()
     #take the user back to login screen so they can log in with their new account
@@ -188,10 +181,16 @@ def deleteAccount():
    flash("Please enter the correct username")
  return render_template('deleteUser.html', accountForm = account_form)
 
-#Joe
+#Joe / Trung
 @appObj.route('/<itemID>', methods = ['GET', 'POST'])
 def landingPage(itemID):
   selectedItem = Item.query.filter_by(id = itemID).all()
+  # image_abs_path = '../static/files/amd-pc-1-tech-pc-7-techpc7.in_.jpg' #this works--it wants a relative path
+  # image_abs_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), #it does not want an absolute path
+  #           appObj.config['UPLOAD_FOLDER'],
+  #           selectedItem[0].image) #absolute path of image so it can be used on HTML
+  image_rel_path = '../static/files/' + selectedItem[0].image #concatenate for relative path
+  print(image_rel_path) #DEBUGGING
   cartOption = addToCart()
   if cartOption.validate_on_submit():
     C = ShoppingCart()
@@ -204,7 +203,7 @@ def landingPage(itemID):
     db.session.commit()
     flash("Item has been added to the cart")
     return redirect('/cart')
-  return render_template("landing.html", itemID = itemID, selectedItem = selectedItem[0], cartForm = cartOption)
+  return render_template("landing.html", itemID = itemID, selectedItem = selectedItem[0], cartForm = cartOption, image_rel_path = image_rel_path)
 
 #Joe
 @appObj.route('/cart', methods = ['GET', 'POST'])
