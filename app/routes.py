@@ -89,11 +89,11 @@ def see_all_items():
 
 #Trung
 appObj.config['SECRET_KEY'] = 'you-will-never-guess'
-appObj.config['UPLOAD_FOLDER'] = 'static/files'
+appObj.config['UPLOAD_FOLDER'] = 'static/files' 
 # appObj.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # appObj.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
-#Justin
+#Justin / Trung
 @appObj.route('/sell_item', methods = ['GET', 'POST'])
 @login_required
 def sell_item():
@@ -180,14 +180,16 @@ def deleteAccount():
    flash("Please enter the correct username")
  return render_template('deleteUser.html', accountForm = account_form)
 
-#Joe
+#Joe / Trung
 @appObj.route('/<itemID>', methods = ['GET', 'POST'])
 def landingPage(itemID):
   selectedItem = Item.query.filter_by(id = itemID).all()
-  image_abs_path = os.path.join(os.path.abspath(os.path.dirname(__file__)),
-            appObj.config['UPLOAD_FOLDER'],
-            selectedItem[0].image) #absolute path of image so it can be used on HTML
-  print(image_abs_path) #DEBUGGING
+  # image_abs_path = '../static/files/amd-pc-1-tech-pc-7-techpc7.in_.jpg' #this works--it wants a relative path
+  # image_abs_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), #it does not want an absolute path
+  #           appObj.config['UPLOAD_FOLDER'],
+  #           selectedItem[0].image) #absolute path of image so it can be used on HTML
+  image_rel_path = '../static/files/' + selectedItem[0].image #concatenate for relative path
+  print(image_rel_path) #DEBUGGING
   cartOption = addToCart()
   if cartOption.validate_on_submit():
     C = ShoppingCart()
@@ -200,7 +202,7 @@ def landingPage(itemID):
     db.session.commit()
     flash("Item has been added to the cart")
     return redirect('/cart')
-  return render_template("landing.html", itemID = itemID, selectedItem = selectedItem[0], cartForm = cartOption, image_abs_path = image_abs_path)
+  return render_template("landing.html", itemID = itemID, selectedItem = selectedItem[0], cartForm = cartOption, image_rel_path = image_rel_path)
 
 #Joe
 @appObj.route('/cart', methods = ['GET', 'POST'])
