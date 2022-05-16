@@ -152,6 +152,7 @@ def createAccount():
     db.session.add(user)
     db.session.commit()
     #take the user back to login screen so they can log in with their new account
+    flash('Your account has been created successfully')
     return redirect('/')
   return render_template('createAccount.html', accountForm = accountForm)
 

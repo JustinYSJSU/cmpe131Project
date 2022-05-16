@@ -1,37 +1,3 @@
-<!--
-<html>
-    <head>
-        <title>Create Account</title>
-    </head>
-    <body>
-        <h1>Create Account</h1>
-        <form action="" method="post" nonvalidate> 
-            {{accountForm.hidden_tag()}}
-            <p>
-            {{accountForm.username.label}}<br>
-            {{accountForm.username(size = 32)}}</br>
-            {{accountForm.email.label}}<br>
-            {{accountForm.email(size = 32)}}</br>
-            {{accountForm.password.label}}<br>
-            {{accountForm.password(size = 32)}}</br>
-            {{accountForm.address.label}}<br>
-            {{accountForm.address(size = 32)}}</br>
-            {{accountForm.paymentMethodCompany.label}}<br>
-            {{accountForm.paymentMethodCompany(size = 32)}}</br>
-            {{accountForm.paymentNumber.label}}<br>
-            {{accountForm.paymentNumber(size = 16)}}</br>
-            {{accountForm.paymentCVC.label}}<br>
-            {{accountForm.paymentCVC(size = 3)}}</br>
-            {{accountForm.paymentExpDate.label}}<br>
-            {{accountForm.paymentExpDate(size = 4)}}</br>
-            </p>
-            <p>
-            {{accountForm.submit()}}
-            </p>
-        </form>
-    </body>
-</html>
--->
 
 <!doctype html>
 <html lang="en">
@@ -43,8 +9,19 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+
+
     <title>yaBe - Create Account</title>
   </head>
+
+   {% with messages = get_flashed_messages() %}
+   {% if messages %}
+    {% for message in messages %}
+     <p> {{message}} </p>
+    {% endfor %}
+   {% endif %}
+  {% endwith %}
+
   <body style="background: #c6c6c6">
     <h2> <b> <u> yaBe - Create your account</h2> </b> </u>
     <form action="" method="post" nonvalidate> 
