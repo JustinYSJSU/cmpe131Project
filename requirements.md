@@ -207,15 +207,6 @@ The user left-clicks the "Add picture for item" button below an item label"
 Website displays the PNG/JPEG file(s) as images on the item's individual product page.
 
 - **Alternative Sequence:** User doesn't select a PNG/JPEG file and left-clicks "Open" on the file explorer window
-
-- **Trigger:**
-The user left-clicks the "Add picture for item" button below an item label
-
-- **Primary Postconditions:**
-  
-Website displays the PNG/JPEG file(s) as images on the item's individual product page.
-  
-- **Alternative Sequence:** User doesn't select a PNG/JPEG file and left-clicks "Open" on the file explorer window
  
 1. A error popup appears in the center of the user's screen asking the user to choose a PNG/JPEG file
 2. User presses "OK" on error popup
