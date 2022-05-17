@@ -8,7 +8,7 @@ class addToCart(FlaskForm):
 class checkoutForm(FlaskForm):
     submit = SubmitField('Checkout')
 
-class shoppingCart:
+class sessionCart:
     def __init__(self):
         self.subtotal=0
         self.cart=[]

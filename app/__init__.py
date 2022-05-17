@@ -13,6 +13,8 @@ appObj.config.from_mapping(
    )
 appObj.config['TESTING'] = False
 
+appObj.secret_key = "you-will-never-guess"
+
 db = SQLAlchemy(appObj)
 login = LoginManager(appObj)
 login.login_view = 'login'

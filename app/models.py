@@ -11,13 +11,20 @@ class User(UserMixin, db.Model):
  address = db.Column(db.String(128))
  payment_method_company = db.Column(db.String(10))
  #number is 19 characters to account for spaces between every 4 numbers
- payment_method_number = db.Column(db.String(19))
- payment_method_cvc = db.Column(db.String(3))
- payment_method_expdate = db.Column(db.String(5))
- #sum of all review scores
- review_total_score = db.Column(db.Integer)
- #number of total reviews
- review_total = db.Column(db.Integer)
+ payment_method_number = db.Column(db.Integer)
+ payment_method_cvc = db.Column(db.Integer)
+ #expdate is in the format mm/yy
+ payment_method_expdate = db.Column(db.Integer)
+
+ #changed the review system--total reviews and just be summed later
+ num_positive_reviews = db.Column(db.Integer)
+ num_neutral_reviews = db.Column(db.Integer)
+ num_negative_reviews = db.Column(db.Integer)
+#  #sum of all review scores
+#  review_total_score = db.Column(db.Integer)
+#  #number of total reviews
+#  review_total = db.Column(db.Integer)
+
  items = db.relationship('Item')
  orders = db.relationship('Order')
 
@@ -34,15 +41,22 @@ class Item(db.Model):
  id = db.Column(db.Integer, primary_key = True)
  name = db.Column(db.String(128))
  price = db.Column(db.Float)
- image = db.Column(db.LargeBinary)
+ image = db.Column(db.String(256)) #changed from LargeBinary to String--this will be the name of the image 
  description = db.Column(db.String(256))
-# user_seller_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+ #username is linked to item in order to display seller name
  user_seller_name = db.Column(db.String, db.ForeignKey('user.username'))
 
 class Order(db.Model):
   id = db.Column(db.Integer, primary_key = True)
   itemList = db.Column(db.String(1024))
   subtotal = db.Column(db.Float)
+  buyerID = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+class ShoppingCart(db.Model):
+  id = db.Column(db.Integer, primary_key = True)
+  name = db.Column(db.String(128))
+  price = db.Column(db.Float)
+  itemID = db.Column(db.Integer)
   buyerID = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 @login.user_loader

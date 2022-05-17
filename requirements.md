@@ -17,7 +17,7 @@
 ## Non-functional Requirements
 
 1. The website is expected to be fully functional on FireFox.
-2. The user should be able to customize the color theme of the website.
+2. The user should be able to reach any part of the website without having to backtrack through the site. 
 3. Finding items shall take no longer than 5 seconds to display search results.
 4. Price of items are to be displayed in USD (United States Dollars).
 
