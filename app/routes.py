@@ -153,12 +153,20 @@ def createAccount():
     return redirect('/')
   return render_template('createAccount.html', accountForm = accountForm)
 
+#Trung
+def calculate_rating(user): #helper function to return feedback by percentage--range of 0% to 100%
+  total_reviews = user.num_positive_reviews + user.num_neutral_reviews + user.num_negative_reviews
+  if(total_reviews == 0):
+    return 0
+  return ((user.num_positive_reviews + user.num_neutral_reviews) / float(total_reviews)) * 100
+
 #Zach / Justin
 @appObj.route('/view_profile', methods = ['GET', 'POST'])
 @login_required
 def view_profile():
  user = current_user
- return render_template('user_profiles.html', user = user)
+ rating_percentage = calculate_rating(user)
+ return render_template('user_profiles.html', user = user, rating_percentage = rating_percentage)
 
 #Zach / Justin
 @appObj.route('/deleteUser', methods = ['GET', 'POST'])
