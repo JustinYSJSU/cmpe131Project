@@ -267,19 +267,9 @@ def viewSellerItems():
 
 #Trung
 #each time the user purchases an item, they can rate the seller--positive, neutral, or negative
-@appObj.route('/rating', methods = ['GET', 'POST']) #WIP
-# @login_required
+@appObj.route('/leave_rating') 
+@login_required
 def leave_rating():
-  if request.method == 'POST':
-    choice = request.form['rating']
-    if choice == '1':
-      print("Positive!")
-    elif choice == '2':
-      print("Neutral!")
-    elif choice == '3':
-      print("Negative!")
-    else:
-      print("Nothing selected")
-    return redirect('/checkout')
+  
   return render_template('leave_rating.html')
 

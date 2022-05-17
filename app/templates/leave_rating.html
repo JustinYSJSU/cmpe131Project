@@ -80,14 +80,9 @@
   <br>
   <h2><b><u> yaBe - Leave Rating / Review </b></u></h2>
    <br>
-        <form method='POST' action='/'>
-            <input type='radio' value="rate_positive" name="rating" style="vertical-align:middle"> Positive<br>
-            <input type='radio' value="rate_neutral" name="rating" style="vertical-align:middle"> Neutral<br>
-            <input type='radio' value="rate_negative" name="rating" style="vertical-align:middle"> Negative<br> <br>
-
-            <input type='submit' class="btn btn-outline-dark" name="Submit Review">
-        </form>
-
+   <a class="btn btn-outline-dark" href="{{url_for('checkout')}}" role="button">Positive</a> <br>
+   <a class="btn btn-outline-dark" href="{{url_for('checkout')}}" role="button">Neutral</a> <br>
+   <a class="btn btn-outline-dark" href="{{url_for('checkout')}}" role="button">Negative</a> <br>
         <br>
         <div>
             <a class="btn btn-outline-dark" href="home" role="button"> Continue Shopping </a>
