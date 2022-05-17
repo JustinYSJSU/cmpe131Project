@@ -81,7 +81,9 @@
   <h2><b><u> yaBe - Checkout / Order History </b></u></h2>
    <br>
         {%for item in orders%}
-        {{item.itemList}} ({{"$%.2f"|format(item.subtotal)}}) <br>
+        {{item.itemList}} ({{"$%.2f"|format(item.subtotal)}})
+        <a class="btn btn-outline-dark" href="{{url_for('leave_rating')}}" role="button">Rate the Seller</a>
+        <br>
         {%endfor%}
         <br>
         <div>

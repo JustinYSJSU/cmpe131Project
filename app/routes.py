@@ -2,7 +2,7 @@ from crypt import methods
 from wsgiref.util import request_uri
 from bleach import ALLOWED_ATTRIBUTES
 
-from requests import request
+# from requests import request
 from app import appObj
 from app.user_login import LoginUser
 
@@ -17,7 +17,7 @@ from app.delete_user import DeleteUser
 
 from app.addToCart import addToCart, sessionCart, checkoutForm
 
-from flask import render_template, flash, redirect, url_for
+from flask import render_template, flash, redirect, url_for, request
 from werkzeug.security import generate_password_hash
 from werkzeug.utils import secure_filename
 
@@ -153,12 +153,20 @@ def createAccount():
     return redirect('/')
   return render_template('createAccount.html', accountForm = accountForm)
 
+#Trung
+def calculate_rating(user): #helper function to return feedback by percentage--range of 0% to 100%
+  total_reviews = user.num_positive_reviews + user.num_neutral_reviews + user.num_negative_reviews
+  if(total_reviews == 0):
+    return 0
+  return ((user.num_positive_reviews + user.num_neutral_reviews) / float(total_reviews)) * 100
+
 #Zach / Justin
 @appObj.route('/view_profile', methods = ['GET', 'POST'])
 @login_required
 def view_profile():
  user = current_user
- return render_template('user_profiles.html', user = user)
+ rating_percentage = calculate_rating(user)
+ return render_template('user_profiles.html', user = user, rating_percentage = rating_percentage)
 
 #Zach / Justin
 @appObj.route('/deleteUser', methods = ['GET', 'POST'])
@@ -256,3 +264,18 @@ def checkout():
 @appObj.route('/sellerItems')
 def viewSellerItems():
   pass
+
+#Trung
+#each time the user purchases an item, they can rate the seller--positive, neutral, or negative
+#can be changed so that the user has a seperate field where they can update ratings of sellers they've purchased from
+@appObj.route('/leave_rating') 
+@login_required
+def leave_rating():
+  '''
+  to better implement this, the user class 
+  could keep track of the sellers they 
+  purchased from instead--then, any new purchase
+  would allow the user to revaluate their rating
+  '''
+  return render_template('leave_rating.html')
+
