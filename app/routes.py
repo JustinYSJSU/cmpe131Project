@@ -17,7 +17,7 @@ from app.delete_user import DeleteUser
 
 from app.addToCart import addToCart, sessionCart, checkoutForm
 
-from flask import render_template, flash, redirect, url_for
+from flask import render_template, flash, redirect, url_for, request
 from werkzeug.security import generate_password_hash
 from werkzeug.utils import secure_filename
 
@@ -264,3 +264,14 @@ def checkout():
 @appObj.route('/sellerItems')
 def viewSellerItems():
   pass
+
+#Trung
+'''
+- each time the user purchases an item, they can rate the seller--positive, neutral, or negative
+'''
+@appObj.route('/rating', methods = ['GET', 'POST'])
+def leave_rating():
+  if request.method == 'POST':
+    choice = request.form['rating']
+  return render_template('leave_rating.html')
+
