@@ -131,26 +131,29 @@ def sell_item():
 def createAccount():
   accountForm = CreateUser()
   if accountForm.validate_on_submit():
-    user=User()
-    user.username=accountForm.username.data
-    user.email=accountForm.email.data
-    user.set_password(accountForm.password.data)
-    user.address=accountForm.address.data
-    user.payment_method_company=accountForm.paymentMethodCompany.data
-    user.payment_method_number=accountForm.paymentNumber.data
-    user.payment_method_expdate=accountForm.paymentExpDate.data
-    user.payment_method_cvc=accountForm.paymentCVC.data
+    if(accountForm.paymentCVC.data > 99 and accountForm.paymentCVC.data <1000 and accountForm.paymentExpDate.data > 999 and accountForm.paymentExpDate.data < 10000 and accountForm.paymentNumber.data > 999999999999999 and accountForm.paymentNumber.data < 10000000000000000):
+      user=User()
+      user.username=accountForm.username.data
+      user.email=accountForm.email.data
+      user.set_password(accountForm.password.data)
+      user.address=accountForm.address.data
+      user.payment_method_company=accountForm.paymentMethodCompany.data
+      user.payment_method_number=accountForm.paymentNumber.data
+      user.payment_method_expdate=accountForm.paymentExpDate.data
+      user.payment_method_cvc=accountForm.paymentCVC.data
 
-    #assuming a new account will have no ratings
-    user.num_positive_reviews=0
-    user.num_neutral_reviews=0
-    user.num_negative_reviews=0
+      #assuming a new account will have no ratings
+      user.num_positive_reviews=0
+      user.num_neutral_reviews=0
+      user.num_negative_reviews=0
 
-    db.session.add(user)
-    db.session.commit()
-    #take the user back to login screen so they can log in with their new account
-    flash('Your account has been created successfully')
-    return redirect('/')
+      db.session.add(user)
+      db.session.commit()
+      #take the user back to login screen so they can log in with their new account
+      flash('Your account has been created successfully')
+      return redirect('/')
+    else:
+      flash('Enter the proper amount of digits for payment method')
   return render_template('createAccount.html', accountForm = accountForm)
 
 #Trung
