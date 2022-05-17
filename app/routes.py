@@ -267,9 +267,15 @@ def viewSellerItems():
 
 #Trung
 #each time the user purchases an item, they can rate the seller--positive, neutral, or negative
+#can be changed so that the user has a seperate field where they can update ratings of sellers they've purchased from
 @appObj.route('/leave_rating') 
 @login_required
 def leave_rating():
-  
+  '''
+  to better implement this, the user class 
+  could keep track of the sellers they 
+  purchased from instead--then, any new purchase
+  would allow the user to revaluate their rating
+  '''
   return render_template('leave_rating.html')
 
