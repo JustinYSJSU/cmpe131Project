@@ -131,7 +131,7 @@ def sell_item():
 def createAccount():
   accountForm = CreateUser()
   if accountForm.validate_on_submit():
-    if(accountForm.paymentCVC.data > 99 and accountForm.paymentCVC.data <1000 and accountForm.paymentExpDate.data > 999 and accountForm.paymentExpDate.data < 10000 and accountForm.paymentNumber.data > 999999999999999 and accountForm.paymentNumber.data < 10000000000000000):
+    if(accountForm.paymentCVC.data <1000 and accountForm.paymentExpDate.data < 10000 and accountForm.paymentNumber.data < 10000000000000000):
       user=User()
       user.username=accountForm.username.data
       user.email=accountForm.email.data
