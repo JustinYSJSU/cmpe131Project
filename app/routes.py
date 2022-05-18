@@ -124,7 +124,8 @@ def see_all_items():
 
 #Trung
 appObj.config['SECRET_KEY'] = 'you-will-never-guess'
-appObj.config['UPLOAD_FOLDER'] = 'static/files' 
+appObj.config['UPLOAD_FOLDER'] = 'static/files'
+appObj.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.jpeg', '.png'] 
 # appObj.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # appObj.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
@@ -139,6 +140,13 @@ def sell_item():
    '''IMAGE HANDLING'''
    file = sell_form.file.data #grab the file
    sec_filename = secure_filename(file.filename) #name of image file submitted
+
+   if sec_filename != '': #check if the file uploaded was an image type
+      file_ext = os.path.splitext(sec_filename)[1]
+      if file_ext not in appObj.config['UPLOAD_EXTENSIONS']:
+        flash("This file type cannot be uploaded (allowed types: jpg, jpeg, png)")
+        return redirect('/sell_item')
+
    file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),
             appObj.config['UPLOAD_FOLDER'],
             sec_filename)) #save the file
