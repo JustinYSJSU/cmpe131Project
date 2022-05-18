@@ -208,8 +208,19 @@ def calculate_rating(user): #helper function to return feedback by percentage--r
 @login_required
 def view_profile():
  user = current_user
+ payNumber = str(current_user.payment_method_number)
+ while (len(payNumber) < 16):
+   payNumber = '0' + payNumber
+ payNumber = payNumber[:4] + ' ' + payNumber[4:8] + ' ' + payNumber[8:12] + ' ' + payNumber[12:]
+ payCVC = str(current_user.payment_method_cvc)
+ while (len(payCVC) < 3):
+   payCVC = '0' + payCVC
+ payDate = str(current_user.payment_method_expdate)
+ while (len(payDate) < 4):
+   payDate = '0' + payDate
+ payDate = payDate[:2] + '/' + payDate[2:]
  rating_percentage = calculate_rating(user)
- return render_template('user_profiles.html', user = user, rating_percentage = rating_percentage)
+ return render_template('user_profiles.html', user = user, rating_percentage = rating_percentage, payNumber = payNumber, payCVC = payCVC, payDate = payDate)
 
 #Zach / Justin
 @appObj.route('/deleteUser', methods = ['GET', 'POST'])
@@ -303,7 +314,3 @@ def checkout():
   orders = Order.query.filter_by(buyerID = current_user.id)
   return render_template("checkout.html", orders = orders)
 
-#Joe
-@appObj.route('/sellerItems')
-def viewSellerItems():
-  pass
