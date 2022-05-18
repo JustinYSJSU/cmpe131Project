@@ -63,6 +63,7 @@
          <li> <a class="btn btn-outline-dark m-2" href="sell_item" role="button">Sell</a> </li>
          <li> <a class="btn btn-outline-dark m-2" href="see_all_items" role="button">Inventory</a> </li>
          <li> <a class="btn btn-outline-dark m-2" href="cart" role="button">Cart</a></li>
+         <li> <a class="btn btn-outline-dark m-2" href= "/search_user_rate" role="button"> Rate </a> <li>
          <li> <a class="btn btn-outline-dark m-2" href="view_profile" role="button"> Profile </a></li>
         </ul>
         
@@ -78,19 +79,25 @@
 
   
   <br>
-  <h2><b><u> yaBe - Leave Rating / Review </b></u></h2>
+  <h2><b><u> yaBe - Leave Rating / Review</b></u></h2>
    <br>
-   <a class="btn btn-outline-dark" href="{{url_for('checkout')}}" role="button">Positive</a> <br>
-   <a class="btn btn-outline-dark" href="{{url_for('checkout')}}" role="button">Neutral</a> <br>
-   <a class="btn btn-outline-dark" href="{{url_for('checkout')}}" role="button">Negative</a> <br>
-        <br>
-        <div>
-            <a class="btn btn-outline-dark" href="home" role="button"> Continue Shopping </a>
-        </div>
+     <form action=" " method="post" novaldiate>
+      {{rate_form.csrf_token}}
+      {{rate_form.username_label}}
+      {{rate_form.username(size = 48)}} <br>
+      {{rate_form.rating_number_label}} 
+      {{rate_form.rating_number(size = 48)}} <br>
+      {{rate_form.rate}}        
+     </form>
+      
+     <br>
+
+     <div>
+      <a class="btn btn-outline-dark" href="home" role="button"> Return to Home </a>
+     </div>
 
   </body>
 
-  
 </main>
 
 

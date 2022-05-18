@@ -13,6 +13,8 @@ from app.createAccount import CreateUser
 
 from app.addToCart import addToCart, sessionCart, checkoutForm
 
+from app.user_rate_form import RateForm
+
 from app.delete_user import DeleteUser
 
 from app.addToCart import addToCart, sessionCart, checkoutForm
@@ -57,7 +59,7 @@ def logout():
     logout_user() #from flask_login
     return redirect(url_for('home'))
 
-#Justin 
+#Justin / Joe
 @appObj.route('/home', methods = ['GET', 'POST'])
 @login_required
 #the home page allows users to serach for items
@@ -86,6 +88,32 @@ def home():
  if(temp[0] & temp[1]):
    flash('your search did not yield any results. Please try again')
  return render_template('home.html', search_form = search_form, search_seller = search_seller)
+
+#Justin / Trung
+@appObj.route('/search_user_rate', methods = ['GET', 'POST'])
+@login_required
+def search_user_rate():
+ rate_form = RateForm()
+ user_logged_in = current_user
+ if rate_form.validate_on_submit():
+  searched_user = User.query.filter_by(username = rate_form.username.data).first()
+  if searched_user != None:
+   if searched_user.username != user_logged_in.username:
+    rating_value = rate_form.rating_number.data
+    if rating_value == 1:
+     searched_user.num_negative_reviews+=1
+    if rating_value == 2:
+     searched_user.num_neutral_reviews+=1
+    if rating_value == 3:
+     searched_user.num_positive_reviews+=1
+    flash('Your review has been processed. You may leave this page.')
+    db.session.add(searched_user)
+    db.session.commit()
+   else:
+    flash('You cannot rate yourself')
+  else:
+   flash('The user you searched for does not exist. Please try again')
+ return render_template('leave_rating.html', rate_form = rate_form)
 
 #Zach / Justin
 @appObj.route('/see_all_items', methods =  ['GET', 'POST'])
@@ -131,7 +159,9 @@ def sell_item():
 def createAccount():
   accountForm = CreateUser()
   if accountForm.validate_on_submit():
-    if(accountForm.paymentCVC.data <1000 and accountForm.paymentExpDate.data < 10000 and accountForm.paymentNumber.data < 10000000000000000):
+    same_name = User.query.filter_by(username = accountForm.username.data).first()
+    if same_name == None:
+     if(accountForm.paymentCVC.data <1000 and accountForm.paymentExpDate.data < 10000 and accountForm.paymentNumber.data < 10000000000000000):
       user=User()
       user.username=accountForm.username.data
       user.email=accountForm.email.data
@@ -152,8 +182,10 @@ def createAccount():
       #take the user back to login screen so they can log in with their new account
       flash('Your account has been created successfully')
       return redirect('/')
-    else:
+     else:
       flash('Enter the proper amount of digits for payment method')
+    else:
+     flash('That username has been taken. Please try again')
   return render_template('createAccount.html', accountForm = accountForm)
 
 #Trung
@@ -267,18 +299,3 @@ def checkout():
 @appObj.route('/sellerItems')
 def viewSellerItems():
   pass
-
-#Trung
-#each time the user purchases an item, they can rate the seller--positive, neutral, or negative
-#can be changed so that the user has a seperate field where they can update ratings of sellers they've purchased from
-@appObj.route('/leave_rating') 
-@login_required
-def leave_rating():
-  '''
-  to better implement this, the user class 
-  could keep track of the sellers they 
-  purchased from instead--then, any new purchase
-  would allow the user to revaluate their rating
-  '''
-  return render_template('leave_rating.html')
-
