@@ -7,5 +7,5 @@ class ItemSearch(FlaskForm):
  search = SubmitField("Search")
 
 class SellerSearch(FlaskForm):
-    seller_name = StringField(render_kw={"placeholder": "Search for a user"})
+    seller_name = StringField(render_kw={"placeholder": "Search for a user and see items they're selling"})
     submit = SubmitField('Search')

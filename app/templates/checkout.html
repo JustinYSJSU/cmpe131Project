@@ -83,7 +83,6 @@
    <br>
         {%for item in orders%}
         {{item.itemList}} ({{"$%.2f"|format(item.subtotal)}})
-        <a class="btn btn-outline-dark" href="{{url_for('leave_rating')}}" role="button">Rate the Seller</a>
         <br>
         {%endfor%}
         <br>
